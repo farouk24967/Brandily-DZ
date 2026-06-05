@@ -1,0 +1,703 @@
+﻿// ─────────────────────────────────────────────
+// 1. LOADER (Three.js torus knot + particles)
+// ─────────────────────────────────────────────
+(function initLoader() {
+  const overlay = document.getElementById('loader-overlay');
+  const fill = document.getElementById('loader-fill');
+  const percent = document.getElementById('loader-percent');
+  let progress = 0;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('loader-canvas'), alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+  const material = new THREE.MeshStandardMaterial({ color: 0xF5B301, metalness: 0.6, roughness: 0.2, emissive: 0xF5B301, emissiveIntensity: 0.15 });
+  const knot = new THREE.Mesh(geometry, material);
+  scene.add(knot);
+
+  const particleCount = 300;
+  const particleGeo = new THREE.BufferGeometry();
+  const particlePos = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    const radius = 2.2 + Math.random() * 1.5;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI * 2;
+    particlePos[i] = Math.sin(theta) * Math.cos(phi) * radius;
+    particlePos[i + 1] = Math.sin(theta) * Math.sin(phi) * radius;
+    particlePos[i + 2] = Math.cos(theta) * radius;
+  }
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+  const particleMat = new THREE.PointsMaterial({ color: 0xF5B301, size: 0.04, transparent: true, opacity: 0.6 });
+  const particles = new THREE.Points(particleGeo, particleMat);
+  scene.add(particles);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambient);
+  const dirLight = new THREE.DirectionalLight(0xF5B301, 1);
+  dirLight.position.set(5, 5, 5);
+  scene.add(dirLight);
+  const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  backLight.position.set(-5, -5, -5);
+  scene.add(backLight);
+  camera.position.z = 5;
+
+  function animateLoader() {
+    requestAnimationFrame(animateLoader);
+    knot.rotation.x += 0.01;
+    knot.rotation.y += 0.015;
+    particles.rotation.x += 0.005;
+    particles.rotation.y += 0.008;
+    renderer.render(scene, camera);
+  }
+  animateLoader();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  const interval = setInterval(() => {
+    progress += Math.random() * 6 + 2;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      fill.style.width = progress + '%';
+      percent.textContent = Math.round(progress) + '%';
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+        if (typeof initMainAnimations === 'function') initMainAnimations();
+      }, 600);
+    }
+    fill.style.width = progress + '%';
+    percent.textContent = Math.round(progress) + '%';
+  }, 120);
+})();
+
+// ─────────────────────────────────────────────
+// 2. LUCIDE ICONS
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+setTimeout(() => lucide.createIcons(), 500);
+
+// ─────────────────────────────────────────────
+// 3. MOBILE MENU
+// ─────────────────────────────────────────────
+(function initMobileMenu() {
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('close-menu');
+  if (menuBtn && menu) menuBtn.addEventListener('click', () => menu.classList.toggle('active'));
+  if (closeBtn && menu) closeBtn.addEventListener('click', () => menu.classList.remove('active'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => menu && menu.classList.remove('active')));
+})();
+
+// ─────────────────────────────────────────────
+// 4. THREE.JS HERO BACKGROUND
+// ─────────────────────────────────────────────
+(function initHeroBg() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const count = 2000;
+  const pos = new Float32Array(count * 3);
+  const col = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i += 3) {
+    pos[i] = (Math.random() - 0.5) * 60;
+    pos[i + 1] = (Math.random() - 0.5) * 60;
+    pos[i + 2] = (Math.random() - 0.5) * 60;
+    if (Math.random() > 0.7) { col[i] = 0.96; col[i + 1] = 0.7; col[i + 2] = 0.004; }
+    else { col[i] = 1; col[i + 1] = 1; col[i + 2] = 1; }
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  const mat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.8 });
+  const mesh = new THREE.Points(geo, mat);
+  scene.add(mesh);
+  camera.position.z = 30;
+
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', (e) => { mx = e.clientX / window.innerWidth - 0.5; my = e.clientY / window.innerHeight - 0.5; });
+  function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.y += 0.001;
+    mesh.rotation.x += 0.0005;
+    mesh.rotation.y += mx * 0.05;
+    mesh.rotation.x += my * 0.05;
+    renderer.render(scene, camera);
+  }
+  animate();
+  window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+})();
+
+// ─────────────────────────────────────────────
+// 5. MAIN ANIMATIONS (GSAP)
+// ─────────────────────────────────────────────
+function initMainAnimations() {
+  if (typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.hero-content .reveal').forEach((el, i) => {
+    gsap.to(el, { opacity: 1, y: 0, duration: 0.8, delay: 0.15 * i + 0.2, ease: 'power3.out' });
+  });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    ScrollTrigger.create({ trigger: el, start: 'top 85%', onEnter: () => el.classList.add('active') });
+  });
+
+  document.querySelectorAll('.counter').forEach(c => {
+    const target = parseInt(c.getAttribute('data-target'));
+    gsap.to(c, { innerHTML: target, duration: 2.5, snap: { innerHTML: 1 }, scrollTrigger: { trigger: c, start: 'top 80%' } });
+  });
+
+  gsap.from('.card-3d', { opacity: 0, y: 50, duration: 0.8, stagger: 0.1, scrollTrigger: { trigger: '#services', start: 'top 70%' } });
+}
+
+// ─────────────────────────────────────────────
+// 6. LOGO LOOP — infinite scroll
+// ─────────────────────────────────────────────
+(function initLogoLoop() {
+  const track = document.getElementById('brand-track');
+  if (!track) return;
+  const clients = [
+    { name: 'Client 1', color: '#F5B301' }, { name: 'Client 2', color: '#FF6B6B' },
+    { name: 'Client 3', color: '#6C5CE7' }, { name: 'Client 4', color: '#00C9A7' },
+    { name: 'Client 5', color: '#FF6B35' }
+  ];
+  function createList() {
+    const ul = document.createElement('ul');
+    ul.className = 'logoloop__list';
+    clients.forEach(c => {
+      const li = document.createElement('li');
+      li.className = 'logoloop__item';
+      li.innerHTML = '<div class="logoloop__logo" style="background:' + c.color + '20;border:2px solid ' + c.color + '40;border-radius:16px;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:12px"><span class="logoloop__initiale" style="background:' + c.color + ';color:#fff;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;font-family:Poppins,sans-serif;flex-shrink:0">' + c.name.charAt(0) + '</span><span class="font-poppins font-bold text-xl tracking-wider" style="color:' + c.color + '">' + c.name + '</span></div>';
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+  for (let i = 0; i < 4; i++) track.appendChild(createList());
+  let offset = 0, velocity = 60, lastTime = 0;
+  function animate(time) {
+    if (!lastTime) lastTime = time;
+    const dt = Math.min((time - lastTime) / 1000, 0.1);
+    lastTime = time;
+    const first = track.querySelector('.logoloop__list');
+    if (first) {
+      const w = first.offsetWidth;
+      offset += velocity * dt;
+      if (offset >= w + 48) offset = 0;
+      track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+    }
+    requestAnimationFrame(animate);
+  }
+  track.addEventListener('mouseenter', () => velocity = 0);
+  track.addEventListener('mouseleave', () => velocity = 60);
+  requestAnimationFrame(animate);
+})();
+
+// ─────────────────────────────────────────────
+// 7. CHROMA GRID — spotlight
+// ─────────────────────────────────────────────
+(function initChromaGrid() {
+  const grid = document.getElementById('chroma-grid');
+  if (!grid || typeof gsap === 'undefined') return;
+  const fadeEl = grid.querySelector('.chroma-fade');
+  let pos = { x: grid.offsetWidth / 2, y: grid.offsetHeight / 2 };
+  const setX = gsap.quickSetter(grid, '--x', 'px');
+  const setY = gsap.quickSetter(grid, '--y', 'px');
+  setX(pos.x);
+  setY(pos.y);
+  function moveTo(x, y) {
+    gsap.to(pos, { x, y, duration: 0.45, ease: 'power3.out', onUpdate: () => { setX(pos.x); setY(pos.y); }, overwrite: true });
+  }
+  grid.addEventListener('pointermove', e => {
+    const r = grid.getBoundingClientRect();
+    moveTo(e.clientX - r.left, e.clientY - r.top);
+    if (fadeEl) gsap.to(fadeEl, { opacity: 0, duration: 0.25, overwrite: true });
+  });
+  grid.addEventListener('pointerleave', () => { if (fadeEl) gsap.to(fadeEl, { opacity: 1, duration: 0.6, overwrite: true }); });
+  grid.querySelectorAll('.chroma-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+    });
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 8. 3D TILT ON SERVICE CARDS
+// ─────────────────────────────────────────────
+(function init3DPhysics() {
+  const cards = document.querySelectorAll('.service-card');
+  cards.forEach(card => {
+    let bounds = card.getBoundingClientRect();
+    const updateBounds = () => { bounds = card.getBoundingClientRect(); };
+    window.addEventListener('resize', updateBounds);
+    window.addEventListener('scroll', updateBounds);
+    card.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - bounds.left) / bounds.width;
+      const y = (e.clientY - bounds.top) / bounds.height;
+      const rotateX = (y - 0.5) * 18;
+      const rotateY = (x - 0.5) * -18;
+      const gravityY = (1 - y) * 4;
+      card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(' + (-gravityY) + 'px) translateZ(20px)';
+      card.style.transition = 'transform 0.08s linear';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0) translateZ(0)';
+      card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'perspective(800px) rotateX(0) translateY(0)';
+        e.target.style.transition = 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-card').forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'perspective(800px) rotateX(15deg) translateY(' + (60 + i * 15) + 'px)';
+    card.style.transition = 'none';
+    observer.observe(card);
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 9. DOCK — macOS magnification + nav
+// ─────────────────────────────────────────────
+(function initDock() {
+  const panel = document.getElementById('dock-panel');
+  if (!panel) return;
+  const items = panel.querySelectorAll('.dock-item');
+  const BASE = 48, MAGNIFY = 68, DISTANCE = 160;
+  const sizes = new Map();
+  items.forEach(item => sizes.set(item, { w: BASE, h: BASE }));
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function animateDock() {
+    let anyMoving = false;
+    items.forEach(item => {
+      const target = sizes.get(item);
+      const curW = parseFloat(item.style.width) || BASE;
+      const curH = parseFloat(item.style.height) || BASE;
+      const newW = lerp(curW, target.w, 0.3);
+      const newH = lerp(curH, target.h, 0.3);
+      if (Math.abs(newW - target.w) > 0.5 || Math.abs(newH - target.h) > 0.5) anyMoving = true;
+      item.style.width = newW + 'px';
+      item.style.height = newH + 'px';
+    });
+    if (anyMoving) requestAnimationFrame(animateDock);
+  }
+  panel.addEventListener('mousemove', (e) => {
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const dx = e.clientX - centerX;
+      const dist = Math.abs(dx);
+      let targetW = BASE, targetH = BASE;
+      if (dist < DISTANCE) {
+        const factor = 1 - dist / DISTANCE;
+        const extra = (MAGNIFY - BASE) * factor;
+        targetW = BASE + extra;
+        targetH = BASE + extra;
+        const icon = item.querySelector('.dock-icon');
+        if (icon) icon.style.transform = 'scale(' + (1 + 0.3 * factor) + ')';
+      } else {
+        const icon = item.querySelector('.dock-icon');
+        if (icon) icon.style.transform = 'scale(1)';
+      }
+      sizes.set(item, { w: targetW, h: targetH });
+    });
+    animateDock();
+  });
+  panel.addEventListener('mouseleave', () => {
+    items.forEach(item => {
+      sizes.set(item, { w: BASE, h: BASE });
+      const icon = item.querySelector('.dock-icon');
+      if (icon) icon.style.transform = 'scale(1)';
+    });
+    animateDock();
+  });
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const href = item.getAttribute('data-href');
+      if (href.startsWith('http')) { window.open(href, '_blank'); }
+      else if (href && href.startsWith('#')) {
+        const page = href.slice(1);
+        if (window.navigateTo) window.navigateTo(page);
+      }
+    });
+    item.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); } });
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    const label = item.getAttribute('data-label');
+    const span = document.createElement('span');
+    span.className = 'dock-label';
+    span.textContent = label;
+    item.appendChild(span);
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 10. CURSOR ORB
+// ─────────────────────────────────────────────
+(function initCursorOrb() {
+  const orb = document.createElement('div');
+  orb.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,179,1,0.08) 0%,transparent 70%);transform:translate(-50%,-50%);transition:left 0.2s ease,top 0.2s ease;';
+  document.body.appendChild(orb);
+  document.addEventListener('mousemove', (e) => { orb.style.left = e.clientX + 'px'; orb.style.top = e.clientY + 'px'; });
+})();
+
+// ─────────────────────────────────────────────
+// 11. PORTFOLIO FILTER
+// ─────────────────────────────────────────────
+(function initPortfolioFilter() {
+  const btns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.chroma-card');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      items.forEach(item => {
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.classList.remove('hidden');
+          if (typeof gsap !== 'undefined') gsap.fromTo(item, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4 });
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 12. BLOG FILTER & SEARCH
+// ─────────────────────────────────────────────
+(function initBlog() {
+  const catBtns = document.querySelectorAll('.blog-cat-btn');
+  const cards = document.querySelectorAll('.blog-card');
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-cat');
+      cards.forEach(c => { c.style.display = (cat === 'all' || c.getAttribute('data-cat') === cat) ? '' : 'none'; });
+    });
+  });
+  window.filterBlog = function() {
+    const q = document.getElementById('blog-search').value.toLowerCase();
+    cards.forEach(c => { c.style.display = c.querySelector('h3').textContent.toLowerCase().includes(q) ? '' : 'none'; });
+  };
+})();
+
+// ─────────────────────────────────────────────
+// 13. CALCULATEUR DE DEVIS
+// ─────────────────────────────────────────────
+(function initCalculator() {
+  const items = document.querySelectorAll('.calc-item');
+  const totalEl = document.getElementById('total-estimate');
+  let total = 0;
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const check = item.querySelector('.w-5.h-5');
+      const mark = check ? check.querySelector('span') : null;
+      const price = parseInt(item.getAttribute('data-price'));
+      const selected = item.classList.contains('bg-brand-gold/10');
+      if (selected) {
+        item.classList.remove('bg-brand-gold/10', 'border-brand-gold/30');
+        item.classList.add('bg-white/5', 'border-white/5');
+        if (check) { check.classList.remove('bg-brand-gold', 'border-brand-gold'); check.classList.add('border-white/30'); }
+        if (mark) mark.classList.add('opacity-0');
+        total -= price;
+      } else {
+        item.classList.add('bg-brand-gold/10', 'border-brand-gold/30');
+        item.classList.remove('bg-white/5', 'border-white/5');
+        if (check) { check.classList.add('bg-brand-gold', 'border-brand-gold'); check.classList.remove('border-white/30'); }
+        if (mark) mark.classList.remove('opacity-0');
+        total += price;
+      }
+      if (totalEl) totalEl.textContent = total.toLocaleString() + ' DA';
+    });
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 14. FAQ ACCORDION
+// ─────────────────────────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const icon = btn.querySelector('[data-lucide="chevron-down"]');
+  const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+  document.querySelectorAll('.faq-item .faq-answer').forEach(a => a.style.maxHeight = '0px');
+  document.querySelectorAll('.faq-item [data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
+  if (!isOpen) { answer.style.maxHeight = answer.scrollHeight + 'px'; icon.style.transform = 'rotate(180deg)'; }
+}
+
+// ─────────────────────────────────────────────
+// 15. LIGHTBOX
+// ─────────────────────────────────────────────
+function openLightbox(element, type) {
+  const caption = element.querySelector('h3').textContent;
+  const category = element.querySelector('span').textContent;
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const vid = document.getElementById('lightbox-video');
+  const ph = document.getElementById('lightbox-placeholder');
+  if (img) img.style.display = 'none';
+  if (vid) vid.style.display = 'none';
+  if (ph) ph.style.display = 'none';
+  if (type === 'video' && vid) {
+    vid.style.display = 'block';
+    vid.src = 'https://www.w3schools.com/html/mov_bbb.mp4';
+    vid.play();
+  } else if (ph) {
+    ph.style.display = 'flex';
+    ph.innerHTML = '<span style="font-size:80px">' + (element.querySelector('.text-5xl')?.textContent || '\ud83d\udcf8') + '</span>';
+  }
+  document.getElementById('lightbox-caption').innerHTML = '<span class="text-brand-gold text-sm uppercase tracking-wider">' + category + '</span><br><span class="text-xl font-bold">' + caption + '</span>';
+  if (lb) lb.classList.add('active');
+}
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  const vid = document.getElementById('lightbox-video');
+  if (vid) { vid.pause(); vid.src = ''; }
+  if (lb) lb.classList.remove('active');
+}
+
+// ─────────────────────────────────────────────
+// 16. DEVIS MODAL
+// ─────────────────────────────────────────────
+function openDevis() {
+  const m = document.getElementById('devis-modal');
+  if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+}
+function closeDevis() {
+  const m = document.getElementById('devis-modal');
+  if (m) { m.classList.add('hidden'); document.body.style.overflow = ''; }
+}
+function handleDevis(e) {
+  e.preventDefault();
+  closeDevis();
+  showNotification('Votre demande de devis a \u00e9t\u00e9 envoy\u00e9e !');
+}
+
+// ─────────────────────────────────────────────
+// 17. CONTACT FORM
+// ─────────────────────────────────────────────
+function handleContactSubmit(channel) {
+  const name = document.getElementById('contact-name').value.trim();
+  const phone = document.getElementById('contact-phone').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const service = document.getElementById('contact-service').value;
+  const message = document.getElementById('contact-message').value.trim();
+  if (!name || !phone || !email || !message) {
+    showNotification('Veuillez remplir tous les champs obligatoires.');
+    return;
+  }
+  const body = `Nom: ${name}%0ATéléphone: ${phone}%0AEmail: ${email}%0AService: ${service}%0AMessage: ${message}`;
+  if (channel === 'whatsapp') {
+    window.open(`https://wa.me/213550412120?text=${body}`, '_blank');
+  } else {
+    document.location.href = `mailto:contact@brandily.dz?subject=Nouvelle demande - ${service}&body=${body}`;
+  }
+  showNotification('Message envoyé avec succès ! Nous vous contacterons rapidement.');
+  document.getElementById('contact-form').reset();
+}
+
+// ─────────────────────────────────────────────
+// 18. NOTIFICATION TOAST
+// ─────────────────────────────────────────────
+function showNotification(text) {
+  const n = document.getElementById('notification');
+  const t = document.getElementById('notification-text');
+  if (t) t.textContent = text;
+  if (n) {
+    n.classList.remove('translate-x-full');
+    setTimeout(() => n.classList.add('translate-x-full'), 3000);
+  }
+}
+
+function sendQuickContact(channel) {
+  const email = document.getElementById('quick-contact-email').value.trim();
+  const msg = document.getElementById('quick-contact-msg').value.trim();
+  if (!email) {
+    showNotification('Veuillez entrer votre email.');
+    return;
+  }
+  const body = `Nom: ${email}\nMessage: ${msg || '(aucun message)'}`;
+  if (channel === 'whatsapp') {
+    window.open(`https://wa.me/213550412120?text=${encodeURIComponent(body)}`, '_blank');
+  } else {
+    document.location.href = `mailto:contact@brandily.dz?subject=Nouveau contact depuis le site&body=${encodeURIComponent(body)}`;
+  }
+  showNotification('Message envoy\u00e9 avec succ\u00e8s !');
+}
+
+// ─────────────────────────────────────────────
+// 20. SERVICE DETAIL MODAL — 3D tilt card
+// ─────────────────────────────────────────────
+const serviceData = {
+  tenue: { name: 'Tenue Personnalis\u00e9e', desc: 'Nous concevons et r\u00e9alisons des v\u00eatements professionnels aux couleurs de votre marque, alliant confort, durabilit\u00e9 et identit\u00e9 visuelle forte.', benefits: ['Tissus premium et personnalisables', 'Broderie et s\u00e9rigraphie haute qualit\u00e9', 'D\u00e9lais rapides (7-10 jours)', '\u00c9chantillons gratuits', 'Commande en gros ou petite s\u00e9rie'] },
+  box: { name: 'Box Cadeaux', desc: 'Offrez une exp\u00e9rience unique avec nos box cadeaux personnalis\u00e9es, parfaites pour vos \u00e9v\u00e9nements d\'entreprise, lancements produits ou relations clients.', benefits: ['Design sur mesure', 'Contenu personnalisable', 'Packaging premium', 'Livraison offerte d\u00e8s 20 box', 'Id\u00e9al pour vos \u00e9v\u00e9nements'] },
+  enseigne: { name: 'Enseigne Lumineuse', desc: 'Attirez le regard avec nos enseignes lumineuses LED sur mesure, visibles de jour comme de nuit pour maximiser votre visibilit\u00e9.', benefits: ['LED basse consommation', '\u00c9tanch\u00e9it\u00e9 IP65', 'Installation incluse', 'Garantie 2 ans', 'Design 3D possible'] },
+  stand: { name: 'Stand d\'Exposition', desc: 'Marquez les esprits lors de vos salons avec des stands modulaires ou sur mesure qui refl\u00e8tent l\'excellence de votre marque.', benefits: ['Structure modulaire ou sur mesure', 'Graphisme haute r\u00e9solution', 'Montage rapide', 'Stockage possible', 'Accompagnement d\u00e9di\u00e9'] },
+  goodies: { name: 'Supports personnalis\u00e9s', desc: 'Des goodies aux objets publicitaires, nous cr\u00e9ons des supports qui portent votre marque partout o\u00f9 vont vos clients.', benefits: ['Large gamme de produits', 'Marquage HD', 'Quantit\u00e9 flexible', 'Livraison rapide', 'Rapport qualit\u00e9-prix optimal'] },
+  espaces: { name: 'Espaces publicitaires', desc: 'Maximisez votre visibilit\u00e9 avec nos espaces publicitaires strat\u00e9giquement plac\u00e9s pour toucher votre audience cible.', benefits: ['Emplacements premium', '\u00c9tude d\'audience', 'Format adapt\u00e9', 'Suivi performance', 'Contrat flexible'] },
+  video: { name: 'Vid\u00e9os & Motion Design', desc: 'Captez l\'attention avec des vid\u00e9os dynamiques et du motion design percutant pour vos r\u00e9seaux sociaux et votre site web.', benefits: ['Storytelling cr\u00e9atif', 'Animation 2D/3D', 'Format adapt\u00e9 \u00e0 chaque r\u00e9seau', 'Voix-off possible', 'D\u00e9lais express'] },
+  print: { name: 'Print Premium', desc: 'Une impression haut de gamme pour tous vos supports : cartes de visite, flyers, catalogues, affiches et bien plus.', benefits: ['Impressions HD/Brochage', 'Papiers premium', 'Fa\u00e7onnage soign\u00e9', 'Tirages petit \u00e0 grand format', 'Finitions pelliculage/dorure'] },
+  habillage: { name: 'Habillage Publicitaire', desc: 'Transformez vos v\u00e9hicules et vitrines en supports publicitaires mobiles avec un habillage sur mesure et impactant.', benefits: ['Film premium r\u00e9sistant UV', 'Pose sans bulle garantie', 'D\u00e9montage sans trace', 'Design exclusif', 'Devis gratuit'] },
+  flexibles: { name: 'Supports flexibles', desc: 'Des b\u00e2ches aux roll-ups, en passant par les drapeaux et kak\u00e9monos, nous imprimons sur tous supports flexibles.', benefits: ['Mat\u00e9riaux r\u00e9sistants', 'Grands formats possibles', 'Impression quadri/num\u00e9rique', 'Montage simple', 'Transport facile'] }
+};
+
+function showServiceDetail(key) {
+  const data = serviceData[key];
+  if (!data) return;
+  const modal = document.getElementById('service-modal');
+  const card = document.getElementById('service-modal-card');
+  const titleEl = document.getElementById('service-modal-title');
+  const descEl = document.getElementById('service-modal-desc');
+  const benefitsEl = document.getElementById('service-modal-benefits');
+  if (!modal || !card) return;
+  titleEl.textContent = data.name;
+  descEl.textContent = data.desc;
+  benefitsEl.innerHTML = data.benefits.map(b =>
+    '<div class="flex items-start gap-3"><svg class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span class="text-white/80 text-sm">' + b + '</span></div>'
+  ).join('');
+  modal.classList.remove('pointer-events-none');
+  if (typeof gsap !== 'undefined') gsap.to(modal, { opacity: 1, duration: 0.5, ease: 'power3.out' });
+  else modal.style.opacity = '1';
+  document.body.style.overflow = 'hidden';
+}
+
+window.closeServiceModal = function() {
+  const modal = document.getElementById('service-modal');
+  const card = document.getElementById('service-modal-card');
+  if (!modal) return;
+  if (typeof gsap !== 'undefined') {
+    gsap.to(modal, { opacity: 0, duration: 0.4, ease: 'power3.in', onComplete: () => modal.classList.add('pointer-events-none') });
+  } else {
+    modal.style.opacity = '0';
+    modal.classList.add('pointer-events-none');
+  }
+  if (card) card.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+  document.body.style.overflow = '';
+};
+
+(function initServiceModalTilt() {
+  const modal = document.getElementById('service-modal');
+  const card = document.getElementById('service-modal-card');
+  if (!modal || !card) return;
+  modal.addEventListener('mousemove', (e) => {
+    if (modal.classList.contains('pointer-events-none')) return;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    card.style.transform = 'perspective(1200px) rotateX(' + ((y - 0.5) * -12) + 'deg) rotateY(' + ((x - 0.5) * 12) + 'deg)';
+    card.style.boxShadow = ((x - 0.5) * 30) + 'px ' + ((y - 0.5) * 30) + 'px 80px rgba(245,179,1,0.15), 0 0 0 1px rgba(245,179,1,0.08)';
+  });
+  modal.addEventListener('mouseleave', () => {
+    if (modal.classList.contains('pointer-events-none')) return;
+    card.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+    card.style.boxShadow = '0 40px 100px rgba(245,179,1,0.1), 0 0 0 1px rgba(245,179,1,0.05)';
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 21. NAVBAR SCROLL EFFECT
+// ─────────────────────────────────────────────
+(function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { navbar.style.background = 'rgba(10, 10, 10, 0.95)'; navbar.classList.add('shadow-lg'); }
+    else { navbar.style.background = 'rgba(10, 10, 10, 0.8)'; navbar.classList.remove('shadow-lg'); }
+  });
+})();
+
+// ─────────────────────────────────────────────
+// 22. ESCAPE HANDLER
+// ─────────────────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLightbox();
+    closeDevis();
+    if (window.closeServiceModal) closeServiceModal();
+  }
+});
+
+// ─────────────────────────────────────────────
+// 23. SPA NAVIGATION ROUTING
+// ─────────────────────────────────────────────
+(function initRouting() {
+  const sectionMap = {
+    accueil: document.getElementById('accueil'),
+    services: document.getElementById('services'),
+    realisations: document.getElementById('realisations'),
+    apropos: document.getElementById('apropos'),
+    blog: document.getElementById('blog'),
+    contact: document.getElementById('contact')
+  };
+
+  window.navigateTo = function(page) {
+    if (page === 'accueil') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const sec = sectionMap[page];
+      if (sec) {
+        const navbar = document.getElementById('navbar');
+        const offset = navbar ? navbar.offsetHeight : 0;
+        const top = sec.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+    const mm = document.getElementById('mobile-menu');
+    if (mm) mm.classList.remove('active');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (menuBtn) {
+      const icon = menuBtn.querySelector('i');
+      if (icon) icon.setAttribute('data-lucide', 'menu');
+    }
+    document.querySelectorAll('.nav-link').forEach(l => {
+      l.classList.remove('text-brand-gold');
+      if (l.getAttribute('href') === '#' + page) l.classList.add('text-brand-gold');
+    });
+    setTimeout(() => lucide.createIcons(), 100);
+  };
+
+  function onHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && sectionMap[hash]) navigateTo(hash);
+  }
+  window.addEventListener('hashchange', onHash);
+  if (window.location.hash) onHash();
+})();
+
+// Intercept all hash link clicks for smooth SPA nav
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (href === '#') return;
+  const page = href.slice(1);
+  if (window.navigateTo && page) {
+    e.preventDefault();
+    history.pushState(null, '', href);
+    window.navigateTo(page);
+  }
+});

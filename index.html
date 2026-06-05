@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandily | Agence de Publicité & Communication Visuelle</title>
+    <link rel="icon" href="public/images/470936775_1138620171240118_7713728575877306656_n.jpg" type="image/x-icon">  
+    <meta name="description" content="Brandily - Transformons vos idées en expériences visuelles mémorables. Agence de publicité premium en Algérie.">
+    <meta name="keywords" content="agence publicité, communication visuelle, branding, Algérie, design, marketing">
+    <meta name="author" content="Brandily">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Brandily | Agence de Publicité Premium">
+    <meta property="og:description" content="Transformons vos idées en expériences visuelles mémorables">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Spline Viewer for 3D -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0A0A0A',
+                            white: '#FFFFFF',
+                            gold: '#F5B301',
+                            gray: '#F5F5F5'
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-gold': 'linear-gradient(135deg, #F5B301 0%, #FFD700 50%, #F5B301 100%)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="antialiased">
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- LOADER OVERLAY                                      -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="loader-overlay">
+        <canvas id="loader-canvas"></canvas>
+        <div class="loader-brand" aria-label="Logo Brandily">
+            <img src="public/images/470936775_1138620171240118_7713728575877306656_n.jpg" alt="Brandily logo" class="loader-brand-mark object-cover">
+            <div class="loader-brand-text">
+                <strong>Brandily</strong>
+                <span>Loading</span>
+            </div>
+        </div>
+        <div class="loader-blocks"></div>
+        <div class="loader-sub">Brandily</div>
+        <div class="loader-bar-track">
+            <div class="loader-bar-fill" id="loader-fill"></div>
+        </div>
+        <div class="loader-percent" id="loader-percent">0%</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- NAVIGATION                                         -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <nav class="fixed w-full z-50 glass-dark transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                    <img src="public/images/470936775_1138620171240118_7713728575877306656_n.jpg" alt="Brandily logo" class="w-10 h-10 rounded-xl object-cover mr-2 border border-brand-gold/30 shadow-lg shadow-brand-gold/10">
+                    <span class="text-2xl font-poppins font-bold text-white">
+                        Brandi<span class="text-brand-gold">ly</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                        Accueil
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#services" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                            Services
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#realisations" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                            Réalisations
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#apropos" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                            À Propos
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#contact" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                            Contact
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    <button onclick="openDevis()" class="bg-brand-gold text-brand-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white transition-all duration-300 transform hover:scale-105 glow-gold-hover">
+                        Demander un devis
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-gold focus:outline-none p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-brand-black z-50 shadow-2xl border-l border-brand-gold/20 p-8 md:hidden">
+            <div class="flex justify-between items-center mb-12">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-gold flex items-center justify-center">
+                        <span class="text-dark font-poppins font-bold text-xs">B</span>
+                    </div>
+                    <span class="text-xl font-poppins font-bold text-white">Brandi<span class="text-brand-gold">ly</span></span>
+                </div>
+                <button id="close-menu" class="text-white/70 hover:text-brand-gold transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <a href="#accueil" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Accueil</a>
+                <a href="#services" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Services</a>
+                <a href="#realisations" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Realisations</a>
+                <a href="#apropos" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">A Propos</a>
+                <a href="#contact" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Contact</a>
+                <hr class="border-white/10 my-4">
+                <a href="https://wa.me/213550412120" target="_blank" class="flex items-center space-x-3 text-brand-gold hover:text-white px-4 py-3 rounded-lg hover:bg-white/5 transition-all">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <button onclick="openDevis()" class="bg-brand-gold text-brand-black px-6 py-3 rounded-full font-semibold text-center mt-4 hover:bg-white transition-all">
+                    Demander un devis
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- HERO SECTION                                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="accueil" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <canvas id="hero-canvas"></canvas>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="hero-content">
+                <div class="mb-6 reveal">
+                    <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-brand-gold border border-brand-gold/30 rounded-full glass-gold">
+                        Agence de Publicité & Communication Visuelle
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight reveal" style="transition-delay:0.1s">
+                    <span class="block text-white">Transformons vos</span>
+                    <span class="block text-gradient-gold">idées</span>
+                    <span class="block text-white">en expériences visuelles</span>
+                    <span class="block text-brand-gold">mémorables</span>
+                </h1>
+                
+                <p class="mt-8 text-xl md:text-2xl text-white/50 max-w-3xl mx-auto font-light leading-relaxed reveal" style="transition-delay:0.2s">
+                    Nous créons des solutions publicitaires innovantes qui donnent vie à votre marque et captivent votre audience.
+                </p>
+                
+                <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay:0.3s">
+                    <a href="#services" class="group relative px-8 py-4 bg-brand-gold text-brand-black rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 glow-gold">
+                        <span class="relative z-10">Nos Services</span>
+                        <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                    </a>
+                    <button onclick="openDevis()" class="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white hover:text-brand-black transition-all duration-300">
+                        Demander un Devis
+                    </button>
+                </div>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-3 reveal" style="transition-delay:0.35s">
+                    <a href="https://instagram.com/brandiily_" target="_blank" rel="noreferrer" class="social-chip instagram" title="Instagram Brandily">
+                        <i data-lucide="instagram"class="w-4 h-4"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://facebook.com/brandily" target="_blank" rel="noreferrer" class="social-chip facebook" title="Facebook Brandily">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://linkedin.com/company/brandily" target="_blank" rel="noreferrer" class="social-chip linkedin" title="LinkedIn Brandily">
+                        <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="scroll-mouse"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- MARQUEE SECTION                                    -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="py-12 border-y border-white/5 overflow-hidden bg-white/5">
+        <div class="infinite-scroll">
+            <div class="flex items-center gap-16 mx-8">
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Branding</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Impression</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Signalétique</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Social Media</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Branding</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Print</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Communication</span>
+                <span class="text-white/30 text-lg">•</span>
+            </div>
+            <div class="flex items-center gap-16 mx-8">
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Branding</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Impression</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Signalétique</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Social Media</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Branding</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-brand-gold text-lg font-bold font-poppins">✦ Print</span>
+                <span class="text-white/30 text-lg">•</span>
+                <span class="text-white/70 text-lg font-poppins">Communication</span>
+                <span class="text-white/30 text-lg">•</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- STATISTICS SECTION                                 -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="stats" class="py-20 bg-brand-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-black via-brand-black to-brand-gold/5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="500">0</div>
+                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Projets Réalisés</div>
+                </div>
+                <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="200">0</div>
+                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Clients Satisfaits</div>
+                </div>
+                <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="5">0</div>
+                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Années d'Expérience</div>
+                </div>
+                <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
+                    <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2">24/7</div>
+                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Support Client</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SERVICES SECTION                                   -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="services" class="py-24 bg-brand-black relative">
+        <div class="absolute top-0 left-0 w-72 h-72 bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Nos Services</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4">
+                    Des solutions <span class="text-gradient-gold">complètes</span> pour votre marque
+                </h2>
+                <p class="text-white/50 max-w-2xl mx-auto text-lg mt-4">
+                    De la conception à la réalisation, nous vous accompagnons à chaque étape.
+                </p>
+            </div>
+            <div class="text-center mb-12 text-white/40 text-sm font-medium tracking-wider flex items-center justify-center gap-2 reveal">
+                <i data-lucide="move" class="w-4 h-4 text-brand-gold"></i>
+                Survolez les cartes pour voir la magie 3D
+                <i data-lucide="move" class="w-4 h-4 text-brand-gold"></i>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000" id="services-grid">
+                <!-- Service 1: Tenue Personnalisée -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="tenue" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="shirt" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Tenue Personnalisée</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">T-shirts, uniformes et vêtements personnalisés pour votre marque.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Sérigraphie & Broderie</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Uniformes professionnels</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vêtements promo événementiels</li>
+                    </ul>
+                    <button onclick="showServiceDetail('tenue')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 2: Box Cadeaux -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="box" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="gift" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Box Cadeaux</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Coffrets cadeaux personnalisés pour fidéliser vos clients et partenaires.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Coffrets sur mesure</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Packaging personnalisé</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Paniers cadeaux d'entreprise</li>
+                    </ul>
+                    <button onclick="showServiceDetail('box')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 3: Enseigne Lumineuse -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="enseigne" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="zap" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Enseigne Lumineuse</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Conception et installation d'enseignes LED & néon pour une visibilité jour et nuit.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Enseignes LED sur mesure</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Néon personnalisé</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Installation & maintenance</li>
+                    </ul>
+                    <button onclick="showServiceDetail('enseigne')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 4: Stand d'Exposition -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="stand" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="layout" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Stand d'Exposition</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Aménagement de stands sur mesure pour vos salons et événements professionnels.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stands modulaires</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mobilier d'exposition</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Branding d'espace salon</li>
+                    </ul>
+                    <button onclick="showServiceDetail('stand')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 5: Supports personnalisés -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="goodies" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="package" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Supports personnalisés</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Mugs, goodies et objets publicitaires sur mesure pour votre marque.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Objets publicitaires</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mugs & gourdes personnalisés</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Goodies d'entreprise</li>
+                    </ul>
+                    <button onclick="showServiceDetail('goodies')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 6: Espaces publicitaires -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="espaces" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="columns" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Espaces publicitaires</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Location et gestion stratégique d'espaces d'affichage pour maximiser votre portée.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Affichage urbain</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Panneaux publicitaires</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stratégie d'emplacement</li>
+                    </ul>
+                    <button onclick="showServiceDetail('espaces')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 7: Vidéos & Motion Design -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="video" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="video" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Vidéos & Motion Design</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Création de contenus vidéos promotionnels et animations graphiques percutantes.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vidéos promotionnelles</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Motion design & animation</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Montage & post-production</li>
+                    </ul>
+                    <button onclick="showServiceDetail('video')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Service 8: Print Premium -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="print" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="file-text" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Print Premium</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Articles de fin d'année et supports d'impression haut de gamme.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Calendriers & agendas</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Impression finition luxe</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Articles de fin d'année</li>
+                    </ul>
+                    <button onclick="showServiceDetail('print')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Service 9: Habillage Publicitaire -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="habillage" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="truck" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Habillage Publicitaire</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Marquage professionnel de véhicules et vitrines pour une communication mobile.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Marquage véhicules</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vitrophanie & adhésifs</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Flocage & covering</li>
+                    </ul>
+                    <button onclick="showServiceDetail('habillage')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Service 10: Supports flexibles -->
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="flexibles" data-tilt>
+                    <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
+                    <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                        <i data-lucide="columns" class="w-7 h-7 text-brand-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Supports flexibles</h3>
+                    <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Roll-up, X-banner et drapeaux pour une signalétique efficace et transportable.</p>
+                    <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Roll-up & X-banner</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Drapeaux & oriflammes</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stand portable</li>
+                    </ul>
+                    <button onclick="showServiceDetail('flexibles')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                        En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- LOGO LOOP — MARQUE INFINI (React Bits)            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="marques" class="py-20 bg-brand-black relative overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4">
+                    <span class="text-gradient-gold">+200</span> clients satisfaits
+                </h2>
+            </div>
+        </div>
+        <div class="logoloop logoloop--fade" id="brand-loop" style="--logoloop-gap: 60px; --logoloop-logoHeight: 36px;">
+            <div class="logoloop__track" id="brand-track"></div>
+        </div>
+        <div class="text-center mt-12 reveal">
+            <p class="text-white/30 text-sm font-body">Rejoignez les entreprises qui nous font confiance</p>
+        </div>
+    </section>
+  
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- PORTFOLIO / RÉALISATIONS SECTION                   -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="realisations" class="py-24 bg-brand-gray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Portfolio</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 text-brand-black">
+                    Nos <span class="text-gradient-gold">Réalisations</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg mt-4">
+                    Découvrez nos projets les plus récents et laissez-vous inspirer
+                </p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button class="filter-btn active px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="all">Tous</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="signaletique">Signalétique</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="vehicules">Véhicules</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="edition">Edition</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="evenementiel">Événementiel</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="digital">Digital</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="objets">Objets</button>
+            </div>
+            
+            <!-- ChromaGrid — Spotlight Grid -->
+            <div class="chroma-grid" id="chroma-grid">
+                <div class="chroma-card" style="--card-border:#F5B301;--card-gradient:linear-gradient(145deg,#F5B301,#000)" data-category="signaletique" onclick="openLightbox(this, 'photo')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">💡</span><span class="chroma-badge">Signalétique</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Enseigne LED</h3><span class="chroma-handle">sur mesure</span><p class="chroma-role col-span-2">Enseigne LED sur mesure pour commerce</p></footer>
+                </div>
+                <div class="chroma-card" style="--card-border:#3B82F6;--card-gradient:linear-gradient(180deg,#3B82F6,#000)" data-category="vehicules" onclick="openLightbox(this, 'photo')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">🚛</span><span class="chroma-badge">Véhicules</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Habillage Flotte</h3><span class="chroma-handle">covering</span><p class="chroma-role col-span-2">Covering complet flotte d'entreprise</p></footer>
+                </div>
+                <div class="chroma-card" style="--card-border:#8B5CF6;--card-gradient:linear-gradient(210deg,#8B5CF6,#000)" data-category="edition" onclick="openLightbox(this, 'photo')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">📄</span><span class="chroma-badge">Edition</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Supports Print</h3><span class="chroma-handle">premium</span><p class="chroma-role col-span-2">Brochures et catalogues premium</p></footer>
+                </div>
+                <div class="chroma-card" style="--card-border:#10B981;--card-gradient:linear-gradient(165deg,#10B981,#000)" data-category="evenementiel" onclick="openLightbox(this, 'video')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">🏗️</span><span class="chroma-badge">Événementiel</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Stand Expo</h3><span class="chroma-handle">professionnel</span><p class="chroma-role col-span-2">Stand d'exposition salon professionnel</p></footer>
+                </div>
+                <div class="chroma-card" style="--card-border:#EC4899;--card-gradient:linear-gradient(195deg,#EC4899,#000)" data-category="digital" onclick="openLightbox(this, 'video')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">🎬</span><span class="chroma-badge">Digital</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Motion Design</h3><span class="chroma-handle">animation</span><p class="chroma-role col-span-2">Animation graphique et vidéo promo</p></footer>
+                </div>
+                <div class="chroma-card" style="--card-border:#F59E0B;--card-gradient:linear-gradient(225deg,#F59E0B,#000)" data-category="objets" onclick="openLightbox(this, 'photo')">
+                    <div class="chroma-preview"><div class="chroma-preview-inner"><span class="chroma-icon">🎁</span><span class="chroma-badge">Objets</span></div></div>
+                    <footer class="chroma-info"><h3 class="chroma-name">Goodies Premium</h3><span class="chroma-handle">personnalisé</span><p class="chroma-role col-span-2">Objets publicitaires personnalisés</p></footer>
+                </div>
+                <div class="chroma-overlay"></div>
+                <div class="chroma-fade" id="chroma-fade"></div>
+            </div>
+            
+            <div class="text-center mt-12 reveal">
+                <a href="#realisations" class="inline-block px-8 py-3 border-2 border-brand-black text-brand-black rounded-full font-semibold hover:bg-brand-black hover:text-white transition-all duration-300">
+                    VOIR TOUT LE PORTFOLIO
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- POURQUOI NOUS ? SECTION                           -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="pourquoi" class="py-24 bg-brand-black relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Pourquoi nous ?</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-4">
+                    L'EXCELLENCE AU SERVICE DE <span class="text-gradient-gold">VOTRE IMAGE</span>
+                </h2>
+                <p class="text-white/50 max-w-3xl mx-auto text-lg mt-4">
+                    Choisir Brandily, c'est s'assurer une visibilité optimale et un accompagnement personnalisé à chaque étape de votre projet de communication.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass rounded-2xl p-8 text-center hover:border-brand-gold/30 transition-all duration-500 group reveal" style="transition-delay:0.1s">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-3xl">🎨</span>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-3">Expertise Créative</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Une équipe passionnée qui repousse les limites du design conventionnel.</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover:border-brand-gold/30 transition-all duration-500 group reveal" style="transition-delay:0.2s">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-3xl">✨</span>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-3">Qualité Premium</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Utilisation des meilleurs matériaux pour des finitions impeccables.</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover:border-brand-gold/30 transition-all duration-500 group reveal" style="transition-delay:0.3s">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-3xl">🔗</span>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-3">Solutions Multicanales</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Une stratégie globale couvrant tous vos points de contact client.</p>
+                </div>
+                <div class="glass rounded-2xl p-8 text-center hover:border-brand-gold/30 transition-all duration-500 group reveal" style="transition-delay:0.4s">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-3xl">👁️</span>
+                    </div>
+                    <h3 class="text-white font-heading font-bold text-lg mb-3">Impact Visuel Fort</h3>
+                    <p class="text-white/50 text-sm leading-relaxed">Des designs conçus pour capturer l'attention instantanément.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- FAQ SECTION (NEW)                                  -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="faq" class="py-24 bg-brand-black relative">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4">
+                    Questions <span class="text-gradient-gold">fréquentes</span>
+                </h2>
+            </div>
+            <div class="space-y-3">
+                <div class="faq-item glass rounded-xl overflow-hidden transition-all duration-300 reveal">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                        <span class="text-white font-semibold text-sm">Quels sont les délais de réalisation ?</span>
+                        <i data-lucide="chevron-down" class="text-brand-gold flex-shrink-0 transition-transform duration-300 w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
+                        <p class="px-5 pb-5 text-white/50 text-sm leading-relaxed">Les délais varient selon le projet. En moyenne, comptez 3 à 7 jours pour une création graphique et 7 à 15 jours pour un projet complet.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl overflow-hidden transition-all duration-300 reveal" style="transition-delay:0.1s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                        <span class="text-white font-semibold text-sm">Proposez-vous des devis gratuits ?</span>
+                        <i data-lucide="chevron-down" class="text-brand-gold flex-shrink-0 transition-transform duration-300 w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
+                        <p class="px-5 pb-5 text-white/50 text-sm leading-relaxed">Oui, tous nos devis sont gratuits et sans engagement. Contactez-nous pour une estimation personnalisée.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl overflow-hidden transition-all duration-300 reveal" style="transition-delay:0.2s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                        <span class="text-white font-semibold text-sm">Livrez-vous dans toute l'Algérie ?</span>
+                        <i data-lucide="chevron-down" class="text-brand-gold flex-shrink-0 transition-transform duration-300 w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
+                        <p class="px-5 pb-5 text-white/50 text-sm leading-relaxed">Oui, nous livrons dans toute l'Algérie. La livraison est gratuite pour Béni Tamou et ses environs.</p>
+                    </div>
+                </div>
+                <div class="faq-item glass rounded-xl overflow-hidden transition-all duration-300 reveal" style="transition-delay:0.3s">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left">
+                        <span class="text-white font-semibold text-sm">Proposez-vous un service après-vente ?</span>
+                        <i data-lucide="chevron-down" class="text-brand-gold flex-shrink-0 transition-transform duration-300 w-5 h-5"></i>
+                    </button>
+                    <div class="faq-answer overflow-hidden max-h-0 transition-all duration-300">
+                        <p class="px-5 pb-5 text-white/50 text-sm leading-relaxed">Absolument ! Nous assurons un suivi complet après chaque projet et des modifications mineures gratuites.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- ABOUT SECTION                                     -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="apropos" class="py-24 bg-brand-black relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left">
+                    <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">À Propos</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                        Together, We Create <span class="text-brand-gold">✨</span>
+                    </h2>
+                    <p class="text-white/50 text-lg mb-8 leading-relaxed">
+                        Brandily est une agence de communication visuelle passionnée par la transformation des idées en réalités impactantes.<br><span class="text-brand-gold font-semibold">Innovate. Connect. Inspire.</span> 🌍<br><br>Basée à Béni Tamou (Blida) en Algérie, nous accompagnons les entreprises dans leur développement visuel avec créativité et professionnalisme. Branding sur tout types de supports ✨
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-gold/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i data-lucide="target" class="w-6 h-6 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg mb-1">Notre Mission</h4>
+                                <p class="text-white/50">Transformer les idées en réalités visuelles mémorables.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-brand-gold/10 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i data-lucide="eye" class="w-6 h-6 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg mb-1">Notre Vision</h4>
+                                <p class="text-white/50">Devenir la référence en communication visuelle en Algérie.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="glass p-3 rounded-xl text-center hover:border-brand-gold/30 transition-all">
+                            <span class="text-2xl block mb-1">🎨</span>
+                            <span class="text-xs font-semibold text-white/70">Créativité</span>
+                        </div>
+                        <div class="glass p-3 rounded-xl text-center hover:border-brand-gold/30 transition-all">
+                            <span class="text-2xl block mb-1">💡</span>
+                            <span class="text-xs font-semibold text-white/70">Innovation</span>
+                        </div>
+                        <div class="glass p-3 rounded-xl text-center hover:border-brand-gold/30 transition-all">
+                            <span class="text-2xl block mb-1">✨</span>
+                            <span class="text-xs font-semibold text-white/70">Qualité</span>
+                        </div>
+                        <div class="glass p-3 rounded-xl text-center hover:border-brand-gold/30 transition-all">
+                            <span class="text-2xl block mb-1">⭐</span>
+                            <span class="text-xs font-semibold text-white/70">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal-right">
+                    <div class="aspect-square rounded-2xl overflow-hidden glass glow-gold">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop&q=60" alt="Team Brandily" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-gold rounded-2xl -z-10 opacity-30"></div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 border-2 border-brand-gold rounded-2xl -z-10 opacity-50"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- BLOG SECTION                                      -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- CONTACT SECTION                                   -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section id="contact" class="py-24 bg-brand-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Contact</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4">
+                    Parlons de votre <span class="text-gradient-gold">projet</span>
+                </h2>
+                <p class="text-white/50 max-w-2xl mx-auto text-lg mt-4">
+                    Une idée ? Un projet ? Nous sommes là pour vous accompagner.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="reveal-left">
+                    <div class="space-y-5 mb-8">
+                        <div class="glass rounded-2xl p-5 flex items-start gap-4 hover:border-brand-gold/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-white/40 text-xs mb-1">Téléphone</p>
+                                <a href="tel:+213550412120" class="text-white font-semibold hover:text-brand-gold transition-colors">+213 550 41 21 20</a>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl p-5 flex items-start gap-4 hover:border-brand-gold/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-white/40 text-xs mb-1">Localisation</p>
+                                <p class="text-white font-semibold">Béni Tamou, Algérie</p>
+                            </div>
+                        </div>
+                        <div class="glass rounded-2xl p-5 flex items-start gap-4 hover:border-brand-gold/30 transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-brand-gold"></i>
+                            </div>
+                            <div>
+                                <p class="text-white/40 text-xs mb-1">Horaires</p>
+                                <p class="text-white font-semibold">Disponible 24h/24 - 7j/7</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aspect-video rounded-2xl overflow-hidden glass">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102294.27416324924!2d2.7903045499999997!3d36.55475335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128f4f17f28ebdcd%3A0xa03d94e2bf19808!2zQsOpbmkgVGFtb3UsIEFsZ8Opcmll!5e0!3m2!1sfr!2sfr!4v1" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6 md:p-8 reveal-right">
+                    <form id="contact-form" class="space-y-5" onsubmit="event.preventDefault()">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">Nom complet</label>
+                                <input id="contact-name" type="text" required class="input-field w-full px-4 py-3 rounded-xl" placeholder="Votre nom">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-white/70 mb-2">Téléphone</label>
+                                <input id="contact-phone" type="tel" required class="input-field w-full px-4 py-3 rounded-xl" placeholder="+213 5XX XX XX XX">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white/70 mb-2">Email</label>
+                            <input id="contact-email" type="email" required class="input-field w-full px-4 py-3 rounded-xl" placeholder="votre@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white/70 mb-2">Service</label>
+                            <select id="contact-service" class="input-field w-full px-4 py-3 rounded-xl">
+                                <option value="" selected disabled>Sélectionnez un service</option>
+                                <option value="branding">Branding</option>
+                                <option value="impression">Impression Publicitaire</option>
+                                <option value="supports">Supports Flexibles</option>
+                                <option value="signaletique">Signalétique</option>
+                                <option value="social">Réseaux Sociaux</option>
+                                                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-white/70 mb-2">Message</label>
+                            <textarea id="contact-message" rows="4" required class="input-field w-full px-4 py-3 rounded-xl resize-none" placeholder="Décrivez votre projet..."></textarea>
+                        </div>
+                        <div class="flex gap-3">
+                            <button type="button" onclick="handleContactSubmit('whatsapp')" class="flex-1 bg-green-600 hover:bg-green-500 text-white py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
+                            </button>
+                            <button type="button" onclick="handleContactSubmit('email')" class="flex-1 bg-brand-gold text-brand-black py-4 rounded-xl font-bold text-lg hover:bg-white transition-all duration-300 transform hover:scale-[1.02] glow-gold-hover flex items-center justify-center gap-2">
+                                <i data-lucide="mail" class="w-5 h-5"></i> Email
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- FOOTER                                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <footer class="bg-brand-black border-t border-white/10 pt-16 pb-8 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-gold/5 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="public/images/470936775_1138620171240118_7713728575877306656_n.jpg" alt="Brandily logo" class="w-10 h-10 rounded-xl object-cover border border-brand-gold/30 shadow-lg shadow-brand-gold/10">
+                        <span class="text-2xl font-poppins font-bold text-white">Brandi<span class="text-brand-gold">ly</span></span>
+                    </div>
+                    <p class="text-white/40 text-sm mb-6">Together, We Create ✨<br>Transformons vos idées en réalités visuelles mémorables.</p>
+                    <svg width="0" height="0" style="position: absolute;">
+                      <defs>
+                        <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
+                          <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"></path>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <div class="relative">
+                      <div class="absolute inset-0 bg-black/20 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl"></div>
+                      <div class="relative flex items-end gap-x-2 p-2">
+                        <a href="https://www.linkedin.com/company/brandily" target="_blank" class="relative">
+                          <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg border border-blue-500/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                            </svg>
+                          </div>
+                        </a>
+                        <a href="https://facebook.com/brandily" target="_blank" class="relative">
+                          <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-blue-700 to-blue-900 rounded-xl flex items-center justify-center shadow-lg border border-blue-600/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                          </div>
+                        </a>
+                        <a href="https://instagram.com/brandiily_" target="_blank" class="relative">
+                          <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg border border-pink-400/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+                            </svg>
+                          </div>
+                        </a>
+                        <a href="https://wa.me/213550412120" target="_blank" class="relative">
+                          <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center shadow-lg border border-green-400/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+                            </svg>
+                          </div>
+                        </a>
+                        <a href="mailto:contact@brandily.dz" class="relative">
+                          <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-brand-gold to-yellow-700 rounded-xl flex items-center justify-center shadow-lg border border-yellow-500/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-dark" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
+                            </svg>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5">Services</h4>
+                    <ul class="space-y-2.5 text-white/50 text-sm">
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Branding</a></li>
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Impression Publicitaire</a></li>
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Supports Flexibles</a></li>
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Signalétique</a></li>
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Réseaux Sociaux</a></li>
+                        <li><a href="services.html" class="hover:text-brand-gold transition-colors">Motion Design</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5">Liens Rapides</h4>
+                    <ul class="space-y-2.5 text-white/50 text-sm">
+                        <li><a href="#accueil" class="hover:text-brand-gold transition-colors">Accueil</a></li>
+                        <li><a href="#services" class="hover:text-brand-gold transition-colors">Services</a></li>
+                        <li><a href="#realisations" class="hover:text-brand-gold transition-colors">Réalisations</a></li>
+                        <li><a href="#apropos" class="hover:text-brand-gold transition-colors">À Propos</a></li>
+                        <li><a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-5">Contact Rapide</h4>
+                    <p class="text-white/40 text-sm mb-4">Envoyez-nous un message directement.</p>
+                    <form class="space-y-3" onsubmit="event.preventDefault()">
+                        <input type="email" id="quick-contact-email" placeholder="Votre email" required class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-gold placeholder-white/30">
+                        <textarea id="quick-contact-msg" placeholder="Votre message..." rows="2" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm focus:outline-none focus:border-brand-gold placeholder-white/30 resize-none"></textarea>
+                        <div class="flex gap-2">
+                            <button type="button" onclick="sendQuickContact('whatsapp')" class="flex-1 px-3 py-2 bg-green-600 hover:bg-green-500 text-white text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-1.5">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WhatsApp
+                            </button>
+                            <button type="button" onclick="sendQuickContact('email')" class="flex-1 px-3 py-2 bg-brand-gold hover:bg-white hover:text-dark text-dark text-xs font-semibold rounded-xl transition-colors flex items-center justify-center gap-1.5">
+                                <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-6 glass-gold rounded-xl p-4 text-center">
+                        <p class="text-brand-gold text-xs font-semibold font-poppins">Together, We Create ✨</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/30 text-xs">© 2026 Brandily - Tous droits réservés. By Eurl E-concept Interior</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-white/30 text-xs hover:text-brand-gold transition-colors">Mentions légales</a>
+                    <a href="#" class="text-white/30 text-xs hover:text-brand-gold transition-colors">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- FLOATING BUTTONS                                   -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/213550412120" target="_blank" class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 group">
+        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+        <span class="absolute right-full mr-3 bg-white text-brand-black px-3 py-1.5 rounded-lg text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg">Discuter sur WhatsApp</span>
+    </a>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- MODAL: DEVIS                                      -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="devis-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeDevis()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-dark border border-brand-gold/30 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 relative glow-gold">
+                <button onclick="closeDevis()" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                
+                <h3 class="text-2xl font-bold mb-2">Demander un <span class="text-brand-gold">devis</span></h3>
+                <p class="text-white/50 mb-6 text-sm">Remplissez ce formulaire pour recevoir une estimation personnalisée.</p>
+                
+                <form onsubmit="handleDevis(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="Nom complet *" required class="input-field w-full px-4 py-3 rounded-xl">
+                        <input type="tel" placeholder="Téléphone *" required class="input-field w-full px-4 py-3 rounded-xl">
+                    </div>
+                    <input type="email" placeholder="Email *" required class="input-field w-full px-4 py-3 rounded-xl">
+                    
+                    <select required class="input-field w-full px-4 py-3 rounded-xl">
+                        <option value="" selected disabled>Type de projet *</option>
+                        <option value="branding">Branding & Identité visuelle</option>
+                        <option value="print">Impression & Supports</option>
+                        <option value="digital">Digital & Réseaux sociaux</option>
+                                                <option value="autre">Autre</option>
+                    </select>
+                    
+                    <div class="glass rounded-xl p-4">
+                        <h4 class="text-brand-gold font-semibold mb-3 text-sm">Budget estimé</h4>
+                        <input type="range" min="10000" max="500000" step="10000" value="50000" class="w-full accent-brand-gold" oninput="document.getElementById('budget-display').textContent = parseInt(this.value).toLocaleString() + ' DA'">
+                        <div class="flex justify-between text-sm mt-2">
+                            <span class="text-white/40">10 000 DA</span>
+                            <span class="text-white font-bold" id="budget-display">50 000 DA</span>
+                            <span class="text-white/40">500 000 DA</span>
+                        </div>
+                    </div>
+                    
+                    <textarea placeholder="Décrivez votre projet en détail..." rows="4" class="input-field w-full px-4 py-3 rounded-xl resize-none"></textarea>
+                    
+                    <button type="submit" class="w-full bg-brand-gold text-dark py-4 rounded-xl font-bold hover:bg-white transition-all duration-300 glow-gold-hover">
+                        Envoyer ma demande de devis
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SERVICE DETAIL — 3D HOVER CARD MODAL              -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="service-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500" style="perspective: 1200px;">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeServiceModal()"></div>
+        <div id="service-modal-card" class="relative max-w-lg w-full glass rounded-3xl p-8 overflow-hidden transform-gpu" style="transform: perspective(1200px) rotateY(0) rotateX(0); box-shadow: 0 40px 100px rgba(245,179,1,0.1), 0 0 0 1px rgba(245,179,1,0.05); transition: box-shadow 0.3s ease;">
+            <button onclick="closeServiceModal()" class="absolute top-4 right-4 text-white/50 hover:text-brand-gold transition-colors z-10">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="service-modal-icon" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 flex items-center justify-center mb-6"></div>
+            <h3 id="service-modal-title" class="text-2xl font-bold text-white mb-2"></h3>
+            <p id="service-modal-desc" class="text-white/50 text-sm leading-relaxed mb-6"></p>
+            <div id="service-modal-benefits" class="space-y-2 mb-8"></div>
+            <div class="flex gap-3">
+                <button onclick="closeServiceModal();openDevis()" class="flex-1 py-3 bg-brand-gold text-dark rounded-xl font-bold hover:bg-white transition-all duration-300 glow-gold">Demander un devis</button>
+                <a href="#contact" class="flex-1 py-3 border border-white/20 text-white rounded-xl font-bold text-center hover:bg-white hover:text-dark transition-all duration-300">Nous contacter</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- LIGHTBOX — 3D PHOTO & VIDEO                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="lightbox" class="lightbox fixed inset-0 z-40 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white hover:text-brand-gold transition-colors z-10">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="relative max-w-4xl w-full">
+            <div id="lightbox-img" class="hidden w-full aspect-video rounded-2xl bg-gradient-to-br from-brand-gold/20 via-purple-500/10 to-dark flex items-center justify-center transform-gpu" style="transform: perspective(1000px) rotateY(2deg) rotateX(1deg); box-shadow: 0 30px 80px rgba(245,179,1,0.15);">
+                <div id="lightbox-placeholder" class="text-center"></div>
+            </div>
+            <video id="lightbox-video" class="hidden w-full aspect-video rounded-2xl object-cover transform-gpu" style="transform: perspective(1000px) rotateY(2deg) rotateX(1deg); box-shadow: 0 30px 80px rgba(245,179,1,0.15);" controls autoplay muted playsinline></video>
+            <div id="lightbox-caption" class="mt-4 text-white text-center"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- NOTIFICATION TOAST                                -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="notification" class="fixed top-24 right-4 bg-brand-gold text-dark px-6 py-3 rounded-xl shadow-lg transform translate-x-full transition-transform duration-300 z-50 font-semibold flex items-center">
+        <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
+        <span id="notification-text">Message envoyé avec succès !</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- DOCK COMPONENT (macOS-style dock) - React Bits    -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <div id="mac-dock" class="dock-outer">
+        <div class="dock-panel" id="dock-panel" role="toolbar" aria-label="Navigation rapide">
+            <div class="dock-item" data-label="Accueil" data-href="#accueil">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="dock-item" data-label="Services" data-href="#services">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="dock-item" data-label="Réalisations" data-href="#realisations">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <div class="dock-item" data-label="À Propos" data-href="#apropos">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="dock-item" data-label="Contact" data-href="#contact">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="dock-item" data-label="WhatsApp" data-href="https://wa.me/213550412120">
+                <svg class="dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
