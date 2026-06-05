@@ -656,11 +656,12 @@ body {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
-        @media (max-width: 640px) {
-            .dock-panel { gap: 4px; padding: 5px 6px 6px; border-radius: 14px; }
-            .dock-item { width: 38px; height: 38px; border-radius: 10px; }
-            .dock-icon { width: 16px; height: 16px; }
-        }
+@media (max-width: 640px) {
+    .dock-outer { bottom: auto; top: 50%; transform: translate(-50%, -50%); }
+    .dock-panel { gap: 4px; padding: 5px 6px 6px; border-radius: 14px; }
+    .dock-item { width: 38px; height: 38px; border-radius: 10px; }
+    .dock-icon { width: 16px; height: 16px; }
+}
 
         /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
         /* CHROMA GRID (React Bits) â€” spotlight grid  */

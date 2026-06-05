@@ -137,30 +137,30 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-brand-black z-50 shadow-2xl border-l border-brand-gold/20 p-8 md:hidden">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full z-50 shadow-2xl p-8 md:hidden" style="background:#0A0A0A;border-left:1px solid rgba(245,179,1,0.2);">
             <div class="flex justify-between items-center mb-12">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-brand-gold flex items-center justify-center">
-                        <span class="text-dark font-poppins font-bold text-xs">B</span>
+                    <div class="w-8 h-8 rounded-lg" style="background:#F5B301;display:flex;align-items:center;justify-content:center;">
+                        <span style="color:#0A0A0A;font-family:Poppins,sans-serif;font-weight:700;font-size:12px;">B</span>
                     </div>
-                    <span class="text-xl font-poppins font-bold text-white">Brandi<span class="text-brand-gold">ly</span></span>
+                    <span class="text-xl font-poppins font-bold" style="color:#FFF;">Brandi<span style="color:#F5B301;">ly</span></span>
                 </div>
-                <button id="close-menu" class="text-white/70 hover:text-brand-gold transition-colors">
+                <button id="close-menu" style="color:rgba(255,255,255,0.7);">
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
             <div class="flex flex-col space-y-2">
-                <a href="#accueil" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Accueil</a>
-                <a href="#services" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Services</a>
-                <a href="#realisations" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Realisations</a>
-                <a href="#apropos" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">A Propos</a>
-                <a href="#contact" class="text-white/70 hover:text-brand-gold hover:bg-white/5 rounded-lg px-4 py-3 transition-all text-lg font-medium mobile-link">Contact</a>
-                <hr class="border-white/10 my-4">
-                <a href="https://wa.me/213550412120" target="_blank" class="flex items-center space-x-3 text-brand-gold hover:text-white px-4 py-3 rounded-lg hover:bg-white/5 transition-all">
+                <a href="#accueil" class="mobile-link rounded-lg px-4 py-3 transition-all text-lg font-medium" style="color:#F5B301;font-weight:700;">Accueil</a>
+                <a href="#services" class="mobile-link rounded-lg px-4 py-3 transition-all text-lg font-medium" style="color:#F5B301;font-weight:700;">Services</a>
+                <a href="#realisations" class="mobile-link rounded-lg px-4 py-3 transition-all text-lg font-medium" style="color:#F5B301;font-weight:700;">Realisations</a>
+                <a href="#apropos" class="mobile-link rounded-lg px-4 py-3 transition-all text-lg font-medium" style="color:#F5B301;font-weight:700;">A Propos</a>
+                <a href="#contact" class="mobile-link rounded-lg px-4 py-3 transition-all text-lg font-medium" style="color:#F5B301;font-weight:700;">Contact</a>
+                <hr style="border-color:rgba(255,255,255,0.1);margin:16px 0;">
+                <a href="https://wa.me/213550412120" target="_blank" class="flex items-center space-x-3 rounded-lg px-4 py-3 transition-all" style="color:#F5B301;font-weight:600;">
                     <i data-lucide="message-circle" class="w-5 h-5"></i>
                     <span>WhatsApp</span>
                 </a>
-                <button onclick="openDevis()" class="bg-brand-gold text-brand-black px-6 py-3 rounded-full font-semibold text-center mt-4 hover:bg-white transition-all">
+                <button onclick="openDevis()" class="px-6 py-3 rounded-full font-semibold text-center mt-4 transition-all" style="background:#F5B301;color:#0A0A0A;font-weight:600;">
                     Demander un devis
                 </button>
             </div>
