@@ -7,58 +7,70 @@
   const percent = document.getElementById('loader-percent');
   let progress = 0;
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('loader-canvas'), alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
-  const material = new THREE.MeshStandardMaterial({ color: 0xF5B301, metalness: 0.6, roughness: 0.2, emissive: 0xF5B301, emissiveIntensity: 0.15 });
-  const knot = new THREE.Mesh(geometry, material);
-  scene.add(knot);
-
-  const particleCount = 300;
-  const particleGeo = new THREE.BufferGeometry();
-  const particlePos = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount * 3; i += 3) {
-    const radius = 2.2 + Math.random() * 1.5;
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.random() * Math.PI * 2;
-    particlePos[i] = Math.sin(theta) * Math.cos(phi) * radius;
-    particlePos[i + 1] = Math.sin(theta) * Math.sin(phi) * radius;
-    particlePos[i + 2] = Math.cos(theta) * radius;
+  function hideLoader() {
+    if (overlay && !overlay.classList.contains('hidden')) {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (typeof initMainAnimations === 'function') initMainAnimations();
+    }
   }
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-  const particleMat = new THREE.PointsMaterial({ color: 0xF5B301, size: 0.04, transparent: true, opacity: 0.6 });
-  const particles = new THREE.Points(particleGeo, particleMat);
-  scene.add(particles);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambient);
-  const dirLight = new THREE.DirectionalLight(0xF5B301, 1);
-  dirLight.position.set(5, 5, 5);
-  scene.add(dirLight);
-  const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  backLight.position.set(-5, -5, -5);
-  scene.add(backLight);
-  camera.position.z = 5;
-
-  function animateLoader() {
-    requestAnimationFrame(animateLoader);
-    knot.rotation.x += 0.01;
-    knot.rotation.y += 0.015;
-    particles.rotation.x += 0.005;
-    particles.rotation.y += 0.008;
-    renderer.render(scene, camera);
-  }
-  animateLoader();
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+  try {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('loader-canvas'), alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+    const material = new THREE.MeshStandardMaterial({ color: 0xF5B301, metalness: 0.6, roughness: 0.2, emissive: 0xF5B301, emissiveIntensity: 0.15 });
+    const knot = new THREE.Mesh(geometry, material);
+    scene.add(knot);
+
+    const particleCount = 300;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePos = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      const radius = 2.2 + Math.random() * 1.5;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.random() * Math.PI * 2;
+      particlePos[i] = Math.sin(theta) * Math.cos(phi) * radius;
+      particlePos[i + 1] = Math.sin(theta) * Math.sin(phi) * radius;
+      particlePos[i + 2] = Math.cos(theta) * radius;
+    }
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0xF5B301, size: 0.04, transparent: true, opacity: 0.6 });
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambient);
+    const dirLight = new THREE.DirectionalLight(0xF5B301, 1);
+    dirLight.position.set(5, 5, 5);
+    scene.add(dirLight);
+    const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    backLight.position.set(-5, -5, -5);
+    scene.add(backLight);
+    camera.position.z = 5;
+
+    function animateLoader() {
+      requestAnimationFrame(animateLoader);
+      knot.rotation.x += 0.01;
+      knot.rotation.y += 0.015;
+      particles.rotation.x += 0.005;
+      particles.rotation.y += 0.008;
+      renderer.render(scene, camera);
+    }
+    animateLoader();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  } catch (e) {
+    console.warn('Loader 3D skipped:', e);
+  }
 
   const interval = setInterval(() => {
     progress += Math.random() * 6 + 2;
@@ -67,15 +79,13 @@
       clearInterval(interval);
       fill.style.width = progress + '%';
       percent.textContent = Math.round(progress) + '%';
-      setTimeout(() => {
-        overlay.classList.add('hidden');
-        document.body.style.overflow = '';
-        if (typeof initMainAnimations === 'function') initMainAnimations();
-      }, 600);
+      setTimeout(hideLoader, 600);
     }
     fill.style.width = progress + '%';
     percent.textContent = Math.round(progress) + '%';
   }, 120);
+
+  setTimeout(hideLoader, 5000);
 })();
 
 // ─────────────────────────────────────────────
