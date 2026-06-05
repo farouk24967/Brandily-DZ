@@ -170,9 +170,11 @@ function initMainAnimations() {
   const track = document.getElementById('brand-track');
   if (!track) return;
   const clients = [
-    { name: 'Client 1', color: '#F5B301' }, { name: 'Client 2', color: '#FF6B6B' },
-    { name: 'Client 3', color: '#6C5CE7' }, { name: 'Client 4', color: '#00C9A7' },
-    { name: 'Client 5', color: '#FF6B35' }
+    { name: 'client1.png', color: '#F5B301' },
+    { name: 'client2.png', color: '#FF6B6B' },
+    { name: 'client3.png', color: '#6C5CE7' },
+    { name: 'client4.png', color: '#00C9A7' },
+    { name: 'client5.png', color: '#FF6B35' }
   ];
   function createList() {
     const ul = document.createElement('ul');
@@ -180,7 +182,7 @@ function initMainAnimations() {
     clients.forEach(c => {
       const li = document.createElement('li');
       li.className = 'logoloop__item';
-      li.innerHTML = '<div class="logoloop__logo" style="background:' + c.color + '20;border:2px solid ' + c.color + '40;border-radius:16px;padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:12px"><span class="logoloop__initiale" style="background:' + c.color + ';color:#fff;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;font-family:Poppins,sans-serif;flex-shrink:0">' + c.name.charAt(0) + '</span><span class="font-poppins font-bold text-xl tracking-wider" style="color:' + c.color + '">' + c.name + '</span></div>';
+      li.innerHTML = '<div class="logoloop__logo" style="background:' + c.color + '20;border:2px solid ' + c.color + '40;border-radius:16px;padding:8px;display:flex;align-items:center;justify-content:center"><img src="public/images/' + c.name + '" alt="" class="logoloop__img"></div>';
       ul.appendChild(li);
     });
     return ul;

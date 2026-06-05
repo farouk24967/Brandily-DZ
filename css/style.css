@@ -539,6 +539,7 @@ body {
           margin-right: 0;
           margin-bottom: var(--logoloop-gap);
         }
+        .logoloop__img { width: 80px; height: 80px; object-fit: contain; border-radius: 12px; }
         .logoloop__item .logoloop__logo:hover {
           transform: scale(1.1) translateY(-2px);
           box-shadow: 0 8px 32px rgba(0,0,0,0.3) !important;
@@ -743,9 +744,21 @@ body {
           gap: 8px;
           background: rgba(0,0,0,0.3);
           backdrop-filter: blur(4px);
+          overflow: hidden;
+          position: relative;
+        }
+        .chroma-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
         }
         .chroma-preview-inner .chroma-icon { font-size: 48px; }
         .chroma-preview-inner .chroma-badge {
+          position: relative;
+          z-index: 1;
           font-size: 11px;
           font-weight: 600;
           letter-spacing: 0.1em;
