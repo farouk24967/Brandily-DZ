@@ -22,7 +22,14 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const geometry = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+    const isMobile = window.innerWidth < 768;
+    const knotSize = isMobile ? 0.7 : 1.2;
+    const knotTube = isMobile ? 0.25 : 0.4;
+    const cameraZ = isMobile ? 7 : 5;
+    const particleRadius = isMobile ? 3.5 : 2.2;
+    const particleSz = isMobile ? 0.025 : 0.04;
+
+    const geometry = new THREE.TorusKnotGeometry(knotSize, knotTube, 100, 16);
     const material = new THREE.MeshStandardMaterial({ color: 0xF5B301, metalness: 0.6, roughness: 0.2, emissive: 0xF5B301, emissiveIntensity: 0.15 });
     const knot = new THREE.Mesh(geometry, material);
     scene.add(knot);
@@ -31,7 +38,7 @@
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount * 3; i += 3) {
-      const radius = 2.2 + Math.random() * 1.5;
+      const radius = particleRadius + Math.random() * 1.5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.random() * Math.PI * 2;
       particlePos[i] = Math.sin(theta) * Math.cos(phi) * radius;
@@ -39,7 +46,7 @@
       particlePos[i + 2] = Math.cos(theta) * radius;
     }
     particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-    const particleMat = new THREE.PointsMaterial({ color: 0xF5B301, size: 0.04, transparent: true, opacity: 0.6 });
+    const particleMat = new THREE.PointsMaterial({ color: 0xF5B301, size: particleSz, transparent: true, opacity: 0.6 });
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
@@ -51,7 +58,7 @@
     const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
     backLight.position.set(-5, -5, -5);
     scene.add(backLight);
-    camera.position.z = 5;
+    camera.position.z = cameraZ;
 
     function animateLoader() {
       requestAnimationFrame(animateLoader);
