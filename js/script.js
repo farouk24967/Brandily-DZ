@@ -95,16 +95,30 @@ document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
 setTimeout(() => lucide.createIcons(), 500);
 
 // ─────────────────────────────────────────────
-// 3. MOBILE MENU
+// 3. MOBILE DOCK — hamburger toggle
 // ─────────────────────────────────────────────
-(function initMobileMenu() {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const closeBtn = document.getElementById('close-menu');
-  if (menuBtn && menu) menuBtn.addEventListener('click', () => menu.classList.toggle('active'));
-  if (closeBtn && menu) closeBtn.addEventListener('click', () => menu.classList.remove('active'));
-  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => menu && menu.classList.remove('active')));
-})();
+function toggleMobileDock() {
+  const dock = document.getElementById('mobile-dock');
+  if (dock) dock.classList.toggle('active');
+}
+document.addEventListener('click', (e) => {
+  const dock = document.getElementById('mobile-dock');
+  const btn = document.getElementById('mobile-menu-btn');
+  if (!dock || !dock.classList.contains('active')) return;
+  if (dock.contains(e.target) || (btn && btn.contains(e.target))) {
+    const item = e.target.closest('.mobile-dock-item');
+    if (item) {
+      const href = item.getAttribute('data-href');
+      if (href.startsWith('http')) { window.open(href, '_blank'); }
+      else if (href && href.startsWith('#')) {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+      }
+      dock.classList.remove('active');
+    }
+    return;
+  }
+  dock.classList.remove('active');
+});
 
 // ─────────────────────────────────────────────
 // 4. THREE.JS HERO BACKGROUND
