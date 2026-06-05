@@ -101,6 +101,7 @@ body {
         .mobile-menu {
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #0A0A0A !important;
         }
         
         .mobile-menu.active {
