@@ -585,6 +585,19 @@ function sendQuickContact(channel) {
 // ─────────────────────────────────────────────
 // 20. SERVICE DETAIL MODAL — 3D tilt card
 // ─────────────────────────────────────────────
+const serviceIcons = {
+  tenue: 'fas fa-tshirt',
+  box: 'fas fa-box-open',
+  enseigne: 'fas fa-lightbulb',
+  stand: 'fas fa-store',
+  goodies: 'fas fa-gift',
+  espaces: 'fas fa-bullhorn',
+  video: 'fas fa-video',
+  print: 'fas fa-print',
+  habillage: 'fas fa-truck',
+  flexibles: 'fas fa-layer-group'
+};
+
 const serviceData = {
   tenue: { name: 'Tenue Personnalis\u00e9e', desc: 'Nous concevons et r\u00e9alisons des v\u00eatements professionnels aux couleurs de votre marque, alliant confort, durabilit\u00e9 et identit\u00e9 visuelle forte.', benefits: ['Tissus premium et personnalisables', 'Broderie et s\u00e9rigraphie haute qualit\u00e9', 'D\u00e9lais rapides (7-10 jours)', '\u00c9chantillons gratuits', 'Commande en gros ou petite s\u00e9rie'] },
   box: { name: 'Box Cadeaux', desc: 'Offrez une exp\u00e9rience unique avec nos box cadeaux personnalis\u00e9es, parfaites pour vos \u00e9v\u00e9nements d\'entreprise, lancements produits ou relations clients.', benefits: ['Design sur mesure', 'Contenu personnalisable', 'Packaging premium', 'Livraison offerte d\u00e8s 20 box', 'Id\u00e9al pour vos \u00e9v\u00e9nements'] },
@@ -606,7 +619,12 @@ function showServiceDetail(key) {
   const titleEl = document.getElementById('service-modal-title');
   const descEl = document.getElementById('service-modal-desc');
   const benefitsEl = document.getElementById('service-modal-benefits');
+  const iconEl = document.getElementById('service-modal-icon');
   if (!modal || !card) return;
+  if (iconEl) {
+    const iconName = serviceIcons[key] || 'fas fa-star';
+    iconEl.innerHTML = '<i class="' + iconName + ' w-10 h-10 text-brand-gold"></i>';
+  }
   titleEl.textContent = data.name;
   descEl.textContent = data.desc;
   benefitsEl.innerHTML = data.benefits.map(b =>
