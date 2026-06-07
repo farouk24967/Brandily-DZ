@@ -140,8 +140,8 @@ function initMainAnimations() {
 // ─────────────────────────────────────────────
 // 6. LOGO LOOP — infinite scroll
 // ─────────────────────────────────────────────
-(function initLogoLoop() {
-  const track = document.getElementById('brand-track');
+function initLogoLoop(containerId) {
+  const track = document.querySelector('#' + containerId + ' .logoloop__track');
   if (!track) return;
   const clients = [
     { name: 'client1.png', color: '#F5B301' },
@@ -179,7 +179,9 @@ function initMainAnimations() {
   track.addEventListener('mouseenter', () => velocity = 0);
   track.addEventListener('mouseleave', () => velocity = 60);
   requestAnimationFrame(animate);
-})();
+}
+initLogoLoop('brand-loop');
+initLogoLoop('brand-loop-2');
 
 // ─────────────────────────────────────────────
 // 7. CHROMA GRID — spotlight
