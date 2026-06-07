@@ -476,15 +476,44 @@ function openDevis(serviceKey = null) {
   }
 
   window.currentServiceForDevis = serviceKey || null;
+
+  const serviceMap = { tenue: 'branding', box: 'autre', enseigne: 'autre', stand: 'autre', goodies: 'autre', espaces: 'digital', video: 'digital', print: 'print', habillage: 'autre', flexibles: 'print' };
+  const serviceSelect = document.getElementById('devis-service');
+  if (serviceSelect && serviceKey && serviceMap[serviceKey]) serviceSelect.value = serviceMap[serviceKey];
 }
 function closeDevis() {
   const m = document.getElementById('devis-modal');
   if (m) { m.classList.add('hidden'); document.body.style.overflow = ''; }
 }
-function handleDevis(e) {
+function handleDevisWhatsApp(e) {
   e.preventDefault();
+  const name = document.getElementById('devis-name').value.trim();
+  const phone = document.getElementById('devis-phone').value.trim();
+  const email = document.getElementById('devis-email').value.trim();
+  const service = document.getElementById('devis-service').value;
+  const message = document.getElementById('devis-message').value.trim();
+  const logoInput = document.getElementById('devis-logo');
+  const serviceName = window.currentServiceForDevis || service || 'Non sp\u00e9cifi\u00e9';
+  let budget = '';
+  const budgetSlider = document.getElementById('devis-budget');
+  const tshirtSlider = document.getElementById('devis-tshirt-qty');
+  if (budgetSlider && !budgetSlider.closest('.hidden')) budget = budgetSlider.value;
+  let tshirtQty = '';
+  if (tshirtSlider && !tshirtSlider.closest('.hidden')) tshirtQty = tshirtSlider.value;
+  let logoInfo = 'Aucun logo fourni';
+  if (logoInput && logoInput.files.length > 0) logoInfo = logoInput.files[0].name + ' (' + (logoInput.files[0].size / 1024).toFixed(1) + ' Ko)';
+  const body = 'Nouvelle demande de devis - Brandily%0A%0A' +
+    'Service: ' + serviceName + '%0A' +
+    'Nom: ' + name + '%0A' +
+    'T\u00e9l\u00e9phone: ' + phone + '%0A' +
+    'Email: ' + email + '%0A' +
+    (budget ? 'Budget: ' + parseInt(budget).toLocaleString() + ' DA%0A' : '') +
+    (tshirtQty ? 'Quantit\u00e9 T-shirts: ' + tshirtQty + '%0A' : '') +
+    'Logo: ' + logoInfo + '%0A' +
+    'Message: ' + (message || 'Aucun');
   closeDevis();
-  showNotification('Votre demande de devis a \u00e9t\u00e9 envoy\u00e9e !');
+  window.open('https://wa.me/213550412120?text=' + body, '_blank');
+  showNotification('Redirection vers WhatsApp avec vos informations.');
 }
 
 // ─────────────────────────────────────────────

@@ -1010,24 +1010,24 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
                 <h3 class="text-2xl font-bold mb-2">Demander un <span class="text-brand-gold">devis</span></h3>
                 <p class="text-white/50 mb-6 text-sm">Remplissez ce formulaire pour recevoir une estimation personnalisée.</p>
                 
-                <form onsubmit="handleDevis(event)" class="space-y-4">
+                <form onsubmit="handleDevisWhatsApp(event)" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Nom complet *" required class="input-field w-full px-4 py-3 rounded-xl">
-                        <input type="tel" placeholder="Téléphone *" required class="input-field w-full px-4 py-3 rounded-xl">
+                        <input type="text" id="devis-name" placeholder="Nom complet *" required class="input-field w-full px-4 py-3 rounded-xl">
+                        <input type="tel" id="devis-phone" placeholder="Téléphone *" required class="input-field w-full px-4 py-3 rounded-xl">
                     </div>
-                    <input type="email" placeholder="Email *" required class="input-field w-full px-4 py-3 rounded-xl">
+                    <input type="email" id="devis-email" placeholder="Email *" required class="input-field w-full px-4 py-3 rounded-xl">
                     
-                    <select required class="input-field w-full px-4 py-3 rounded-xl">
+                    <select id="devis-service" required class="input-field w-full px-4 py-3 rounded-xl">
                         <option value="" selected disabled>Type de projet *</option>
                         <option value="branding">Branding & Identité visuelle</option>
                         <option value="print">Impression & Supports</option>
                         <option value="digital">Digital & Réseaux sociaux</option>
-                                                <option value="autre">Autre</option>
+                        <option value="autre">Autre</option>
                     </select>
                     
                     <div id="devis-budget-block" class="glass rounded-xl p-4">
                         <h4 class="text-brand-gold font-semibold mb-3 text-sm">Budget estimé</h4>
-                        <input type="range" min="10000" max="500000" step="10000" value="50000" class="w-full accent-brand-gold" oninput="document.getElementById('budget-display').textContent = parseInt(this.value).toLocaleString() + ' DA'">
+                        <input type="range" id="devis-budget" min="10000" max="500000" step="10000" value="50000" class="w-full accent-brand-gold" oninput="document.getElementById('budget-display').textContent = parseInt(this.value).toLocaleString() + ' DA'">
                         <div class="flex justify-between text-sm mt-2">
                             <span class="text-white/40">10 000 DA</span>
                             <span class="text-white font-bold" id="budget-display">50 000 DA</span>
@@ -1037,7 +1037,7 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
 
                     <div id="devis-tshirt-block" class="glass rounded-xl p-4 hidden">
                         <h4 class="text-brand-gold font-semibold mb-3 text-sm">Quantité T-shirts</h4>
-                        <input type="range" min="3" max="100" step="1" value="10" class="w-full accent-brand-gold" oninput="const v=parseInt(this.value); const label = v < 10 ? '3 à 10' : v < 50 ? '10 à 50' : '50 à 100+'; document.getElementById('tshirt-quantity-display').textContent = label; document.getElementById('tshirt-quantity-value').textContent = v + ' unités';">
+                        <input type="range" id="devis-tshirt-qty" min="3" max="100" step="1" value="10" class="w-full accent-brand-gold" oninput="const v=parseInt(this.value); const label = v < 10 ? '3 à 10' : v < 50 ? '10 à 50' : '50 à 100+'; document.getElementById('tshirt-quantity-display').textContent = label; document.getElementById('tshirt-quantity-value').textContent = v + ' unités';">
                         <div class="flex justify-between text-sm mt-2">
                             <span class="text-white/40">3</span>
                             <span class="text-white font-bold" id="tshirt-quantity-display">10 à 50</span>
@@ -1045,8 +1045,14 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
                         </div>
                         <p class="text-white/50 text-xs mt-2" id="tshirt-quantity-value">10 unités</p>
                     </div>
+
+                    <div class="glass rounded-xl p-4">
+                        <h4 class="text-brand-gold font-semibold mb-3 text-sm">Votre logo</h4>
+                        <input type="file" id="devis-logo" accept="image/*" class="w-full text-white/80 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-brand-gold file:text-dark file:font-semibold file:cursor-pointer hover:file:bg-white transition-all">
+                        <p class="text-white/40 text-xs mt-1">Optionnel - Téléchargez votre logo si vous en avez un</p>
+                    </div>
                     
-                    <textarea placeholder="Décrivez votre projet en détail..." rows="4" class="input-field w-full px-4 py-3 rounded-xl resize-none"></textarea>
+                    <textarea id="devis-message" placeholder="Décrivez votre projet en détail..." rows="4" class="input-field w-full px-4 py-3 rounded-xl resize-none"></textarea>
                     
                     <button type="submit" class="w-full bg-brand-gold text-dark py-4 rounded-xl font-bold hover:bg-white transition-all duration-300 glow-gold-hover">
                         Envoyer ma demande de devis
