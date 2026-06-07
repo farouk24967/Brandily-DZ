@@ -739,3 +739,13 @@ document.addEventListener('click', (e) => {
     window.navigateTo(page);
   }
 });
+
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+    const section = document.getElementById('realisations');
+    if (section) {
+      section.classList.toggle('hidden');
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+});
