@@ -259,6 +259,8 @@ body {
             z-index: 10002;
             position: relative;
             margin-bottom: 16px;
+            background: #fff;
+            mix-blend-mode: screen;
         }
 
         .loader-brand-mark {
