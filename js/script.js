@@ -504,7 +504,7 @@ function handleContactSubmit(channel) {
   if (channel === 'whatsapp') {
     window.open(`https://wa.me/213550412120?text=${body}`, '_blank');
   } else {
-    document.location.href = `mailto:contact@brandily.dz?subject=Nouvelle demande - ${service}&body=${body}`;
+    document.location.href = `mailto:brandily@e-concept.com?subject=Nouvelle demande - ${service}&body=${body}`;
   }
   showNotification('Message envoyé avec succès ! Nous vous contacterons rapidement.');
   document.getElementById('contact-form').reset();
@@ -534,7 +534,7 @@ function sendQuickContact(channel) {
   if (channel === 'whatsapp') {
     window.open(`https://wa.me/213550412120?text=${encodeURIComponent(body)}`, '_blank');
   } else {
-    document.location.href = `mailto:contact@brandily.dz?subject=Nouveau contact depuis le site&body=${encodeURIComponent(body)}`;
+    document.location.href = `mailto:brandily@e-concept.com?subject=Nouveau contact depuis le site&body=${encodeURIComponent(body)}`;
   }
   showNotification('Message envoy\u00e9 avec succ\u00e8s !');
 }

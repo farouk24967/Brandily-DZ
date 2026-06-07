@@ -335,7 +335,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000" id="services-grid">
                 <!-- Service 1: Tenue Personnalisée -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="tenue" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="tenue" data-tilt onclick="showServiceDetail('tenue')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-tshirt text-white text-2xl"></i>
@@ -347,13 +347,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Uniformes professionnels</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vêtements promo événementiels</li>
                     </ul>
-                    <button onclick="showServiceDetail('tenue')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 2: Box Cadeaux -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="box" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="box" data-tilt onclick="showServiceDetail('box')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-gift text-white text-2xl"></i>
@@ -365,13 +365,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Packaging personnalisé</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Paniers cadeaux d'entreprise</li>
                     </ul>
-                    <button onclick="showServiceDetail('box')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 3: Enseigne Lumineuse -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="enseigne" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="enseigne" data-tilt onclick="showServiceDetail('enseigne')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-lightbulb text-white text-2xl"></i>
@@ -383,13 +383,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Néon personnalisé</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Installation & maintenance</li>
                     </ul>
-                    <button onclick="showServiceDetail('enseigne')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 4: Stand d'Exposition -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="stand" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="stand" data-tilt onclick="showServiceDetail('stand')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-store text-white text-2xl"></i>
@@ -401,13 +401,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mobilier d'exposition</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Branding d'espace salon</li>
                     </ul>
-                    <button onclick="showServiceDetail('stand')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 5: Supports personnalisés -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="goodies" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="goodies" data-tilt onclick="showServiceDetail('goodies')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-gift text-white text-2xl"></i>
@@ -419,13 +419,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mugs & gourdes personnalisés</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Goodies d'entreprise</li>
                     </ul>
-                    <button onclick="showServiceDetail('goodies')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 6: Espaces publicitaires -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="espaces" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="espaces" data-tilt onclick="showServiceDetail('espaces')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-bullhorn text-white text-2xl"></i>
@@ -437,13 +437,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Panneaux publicitaires</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stratégie d'emplacement</li>
                     </ul>
-                    <button onclick="showServiceDetail('espaces')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 7: Vidéos & Motion Design -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="video" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="video" data-tilt onclick="showServiceDetail('video')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-video text-white text-2xl"></i>
@@ -455,13 +455,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Motion design & animation</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Montage & post-production</li>
                     </ul>
-                    <button onclick="showServiceDetail('video')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
                 
                 <!-- Service 8: Print Premium -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="print" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="print" data-tilt onclick="showServiceDetail('print')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-print text-white text-2xl"></i>
@@ -473,13 +473,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Impression finition luxe</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Articles de fin d'année</li>
                     </ul>
-                    <button onclick="showServiceDetail('print')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
 
                 <!-- Service 9: Habillage Publicitaire -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="habillage" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="habillage" data-tilt onclick="showServiceDetail('habillage')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-paint-roller text-white text-2xl"></i>
@@ -491,13 +491,13 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vitrophanie & adhésifs</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Flocage & covering</li>
                     </ul>
-                    <button onclick="showServiceDetail('habillage')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
 
                 <!-- Service 10: Supports flexibles -->
-                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="flexibles" data-tilt>
+                <div class="service-card glass p-8 rounded-2xl hover:border-brand-gold/30 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden" data-service="flexibles" data-tilt onclick="showServiceDetail('flexibles')">
                     <div class="absolute -top-10 -right-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl group-hover:bg-brand-gold/20 transition-all duration-500"></div>
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-flag text-white text-2xl"></i>
@@ -509,7 +509,7 @@
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Drapeaux & oriflammes</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stand portable</li>
                     </ul>
-                    <button onclick="showServiceDetail('flexibles')" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -922,7 +922,7 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
                             </svg>
                           </div>
                         </a>
-                        <a href="mailto:contact@brandily.dz" class="relative">
+                        <a href="mailto:brandily@e-concept.com" class="relative">
                           <div style="clip-path: url(#squircleClip)" class="w-10 h-10 bg-gradient-to-br from-brand-gold to-yellow-700 rounded-xl flex items-center justify-center shadow-lg border border-yellow-500/50 cursor-pointer transform transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-2 hover:shadow-2xl">
                             <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-dark" xmlns="http://www.w3.org/2000/svg">
                               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path>
