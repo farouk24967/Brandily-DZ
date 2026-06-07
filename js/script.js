@@ -512,7 +512,7 @@ function handleDevisWhatsApp(e) {
     'Logo: ' + logoInfo + '%0A' +
     'Message: ' + (message || 'Aucun');
   closeDevis();
-  window.open('https://wa.me/213550412120?text=' + body, '_blank');
+  window.location.href = 'https://wa.me/213550412120?text=' + body;
   showNotification('Redirection vers WhatsApp avec vos informations.');
 }
 
