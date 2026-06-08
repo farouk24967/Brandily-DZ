@@ -144,11 +144,15 @@ function initLogoLoop(containerId) {
   const track = document.querySelector('#' + containerId + ' .logoloop__track');
   if (!track) return;
   const clients = [
-    { name: 'client1.png', color: '#F5B301' },
-    { name: 'client2.png', color: '#FF6B6B' },
-    { name: 'client3.png', color: '#6C5CE7' },
-    { name: 'client4.png', color: '#00C9A7' },
-    { name: 'client5.png', color: '#FF6B35' }
+    { name: 'logo business/client1.png', color: '#F5B301' },
+    { name: 'logo business/client2.png', color: '#FF6B6B' },
+    { name: 'logo business/client3.png', color: '#6C5CE7' },
+    { name: 'logo business/client4.png', color: '#00C9A7' },
+    { name: 'logo business/client5.png', color: '#FF6B35' },
+    { name: 'logo business/WhatsApp Image 2026-06-07 at 14.52.14.jpeg', color: '#FF6B6B' },
+    { name: 'logo business/WhatsApp Image 2026-06-07 at 14.52.20.jpeg', color: '#6C5CE7' },
+    { name: 'logo business/WhatsApp Image 2026-06-07 at 14.56.13.jpeg', color: '#00C9A7' },
+    { name: 'logo business/WhatsApp Image 2026-06-07 at 14.56.56.jpeg', color: '#FF6B35' }
   ];
   function createList() {
     const ul = document.createElement('ul');
