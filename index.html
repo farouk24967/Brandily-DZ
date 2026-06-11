@@ -106,33 +106,44 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#accueil" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                    <a href="#accueil" data-i18n="nav_accueil" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
                         Accueil
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#services" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                    <a href="#services" data-i18n="nav_services" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
                             Services
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="#realisations" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                        <a href="#realisations" data-i18n="nav_realisations" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
                             Réalisations
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="#apropos" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                        <a href="#apropos" data-i18n="nav_apropos" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
                             À Propos
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                        <a href="#contact" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
+                        <a href="#contact" data-i18n="nav_contact" class="text-white/70 hover:text-brand-gold transition-colors duration-300 text-sm font-medium relative group">
                             Contact
                             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full"></span>
                         </a>
-                    <button onclick="openDevis()" class="bg-brand-gold text-brand-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white transition-all duration-300 transform hover:scale-105 glow-gold-hover">
+                    <button onclick="openDevis()" data-i18n="nav_devis" class="bg-brand-gold text-brand-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-white transition-all duration-300 transform hover:scale-105 glow-gold-hover">
                         Demander un devis
                     </button>
+                    <!-- Language Switcher -->
+                    <div class="flex items-center gap-1 ml-4 border-l border-white/10 pl-4">
+                        <button onclick="switchLanguage('fr')" class="lang-btn text-xs font-bold px-2 py-1 rounded-md transition-all duration-200" data-lang="fr">FR</button>
+                        <button onclick="switchLanguage('en')" class="lang-btn text-xs font-bold px-2 py-1 rounded-md transition-all duration-200" data-lang="en">EN</button>
+                        <button onclick="switchLanguage('ar')" class="lang-btn text-xs font-bold px-2 py-1 rounded-md transition-all duration-200" data-lang="ar">AR</button>
+                    </div>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center gap-2">
+                    <div class="flex items-center gap-1 mr-2">
+                        <button onclick="switchLanguage('fr')" class="lang-btn text-[10px] font-bold px-1.5 py-0.5 rounded transition-all duration-200" data-lang="fr">FR</button>
+                        <button onclick="switchLanguage('en')" class="lang-btn text-[10px] font-bold px-1.5 py-0.5 rounded transition-all duration-200" data-lang="en">EN</button>
+                        <button onclick="switchLanguage('ar')" class="lang-btn text-[10px] font-bold px-1.5 py-0.5 rounded transition-all duration-200" data-lang="ar">AR</button>
+                    </div>
                     <button id="mobile-menu-btn" class="text-white hover:text-brand-gold focus:outline-none p-2" onclick="toggleMobileDock()">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
@@ -180,27 +191,27 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="hero-content">
                 <div class="mb-6 reveal">
-                    <span class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-brand-gold border border-brand-gold/30 rounded-full glass-gold">
+                    <span data-i18n="hero_badge" class="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-brand-gold border border-brand-gold/30 rounded-full glass-gold">
                         Agence de Publicité & Communication Visuelle
                     </span>
                 </div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight reveal" style="transition-delay:0.1s">
-                    <span class="block text-white">Transformons vos</span>
-                    <span class="block text-gradient-gold">idées</span>
-                    <span class="block text-white">en expériences visuelles</span>
-                    <span class="block text-brand-gold">mémorables</span>
+                    <span data-i18n="hero_title1" class="block text-white">Transformons vos</span>
+                    <span data-i18n="hero_title_highlight" class="block text-gradient-gold">idées</span>
+                    <span data-i18n="hero_title2" class="block text-white">en expériences visuelles</span>
+                    <span data-i18n="hero_title3" class="block text-brand-gold">mémorables</span>
                 </h1>
                 
-                <p class="mt-8 text-xl md:text-2xl text-white/50 max-w-3xl mx-auto font-light leading-relaxed reveal" style="transition-delay:0.2s">
+                <p data-i18n="hero_desc" class="mt-8 text-xl md:text-2xl text-white/50 max-w-3xl mx-auto font-light leading-relaxed reveal" style="transition-delay:0.2s">
                     Nous créons des solutions publicitaires innovantes qui donnent vie à votre marque et captivent votre audience.
                 </p>
                 
                 <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay:0.3s">
-                    <a href="#services" class="group relative px-8 py-4 bg-brand-gold text-brand-black rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 glow-gold">
+                    <a href="#services" data-i18n="hero_btn_services" class="group relative px-8 py-4 bg-brand-gold text-brand-black rounded-full font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 glow-gold">
                         <span class="relative z-10">Nos Services</span>
                         <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
                     </a>
-                    <button onclick="openDevis()" class="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white hover:text-brand-black transition-all duration-300">
+                    <button onclick="openDevis()" data-i18n="hero_btn_devis" class="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold text-lg hover:bg-white hover:text-brand-black transition-all duration-300">
                         Demander un Devis
                     </button>
                 </div>
@@ -272,14 +283,14 @@
        <section id="marques" class="py-20 bg-brand-black relative overflow-hidden border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal">
-                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
+                <span data-i18n="marques_title" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
             </div>
         </div>
         <div class="logoloop logoloop--fade" id="brand-loop" style="--logoloop-gap: 60px; --logoloop-logoHeight: 36px;">
             <div class="logoloop__track" id="brand-track"></div>
         </div>
         <div class="text-center mt-12 reveal">
-            <h1 class="text-white/30 text-sm font-body">Rejoignez les entreprises qui nous font confiance</h1>
+            <h1 data-i18n="marques_sub" class="text-white/30 text-sm font-body">Rejoignez les entreprises qui nous font confiance</h1>
         </div>
     </section>
   
@@ -289,26 +300,26 @@
     <!-- ═══════════════════════════════════════════════════ -->
     <section id="stats" class="py-20 bg-brand-black relative overflow-hidden">
         <div class="text-center mb-12 reveal relative z-10">
-            <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
+            <span data-i18n="stats_title" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-brand-black via-brand-black to-brand-gold/5 pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
                     <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="2000">0</div>
-                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Plus de 2000 Projets Réalisés</div>
+                    <div data-i18n="stats_1" class="text-sm text-white/50 uppercase tracking-wider font-medium">Plus de 2000 Projets Réalisés</div>
                 </div>
                 <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
                     <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="1000">0</div>
-                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">1000 Clients Satisfaits</div>
+                    <div data-i18n="stats_2" class="text-sm text-white/50 uppercase tracking-wider font-medium">1000 Clients Satisfaits</div>
                 </div>
                 <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
                     <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2 counter" data-target="5">0</div>
-                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Années d'Expérience</div>
+                    <div data-i18n="stats_3" class="text-sm text-white/50 uppercase tracking-wider font-medium">Années d'Expérience</div>
                 </div>
                 <div class="text-center p-6 glass rounded-2xl hover:border-brand-gold/30 transition-all duration-500 hover:shadow-lg hover:shadow-brand-gold/5">
                     <div class="text-4xl md:text-5xl font-bold text-brand-gold mb-2">24/7</div>
-                    <div class="text-sm text-white/50 uppercase tracking-wider font-medium">Support Client</div>
+                    <div data-i18n="stats_4" class="text-sm text-white/50 uppercase tracking-wider font-medium">Support Client</div>
                 </div>
             </div>
         </div>
@@ -322,15 +333,15 @@
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[120px] pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center mb-16 reveal">
-                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Nos Services</span>
+                <span data-i18n="services_badge" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Nos Services</span>
                 <h2 class="text-4xl md:text-5xl font-bold mt-4">
-                    Des solutions <span class="text-gradient-gold">complètes</span> pour votre marque
+                    <span data-i18n="services_title1">Des solutions</span> <span data-i18n="services_title_highlight" class="text-gradient-gold">complètes</span> <span data-i18n="services_title2">pour votre marque</span>
                 </h2>
-                <p class="text-white/50 max-w-2xl mx-auto text-lg mt-4">
+                <p data-i18n="services_desc" class="text-white/50 max-w-2xl mx-auto text-lg mt-4">
                     De la conception à la réalisation, nous vous accompagnons à chaque étape.
                 </p>
             </div>
-            <div class="text-center mb-12 text-white/40 text-sm font-medium tracking-wider flex items-center justify-center gap-2 reveal">
+            <div data-i18n="services_hover" class="text-center mb-12 text-white/40 text-sm font-medium tracking-wider flex items-center justify-center gap-2 reveal">
                 <i data-lucide="move" class="w-4 h-4 text-brand-gold"></i>
                 Survolez les cartes pour voir la magie 3D
                 <i data-lucide="move" class="w-4 h-4 text-brand-gold"></i>
@@ -343,14 +354,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-tshirt text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Tenue Personnalisée</h3>
+                    <h3 data-i18n="service_tenue" class="text-xl font-bold mb-3 text-white">Tenue Personnalisée</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">T-shirts, uniformes et vêtements personnalisés pour votre marque.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Sérigraphie & Broderie</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Uniformes professionnels</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vêtements promo événementiels</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -361,14 +372,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-gift text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Box Cadeaux</h3>
+                    <h3 data-i18n="service_box" class="text-xl font-bold mb-3 text-white">Box Cadeaux</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Coffrets cadeaux personnalisés pour fidéliser vos clients et partenaires.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Coffrets sur mesure</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Packaging personnalisé</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Paniers cadeaux d'entreprise</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -379,14 +390,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-lightbulb text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Enseigne Lumineuse</h3>
+                    <h3 data-i18n="service_enseigne" class="text-xl font-bold mb-3 text-white">Enseigne Lumineuse</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Conception et installation d'enseignes LED & néon pour une visibilité jour et nuit.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Enseignes LED sur mesure</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Néon personnalisé</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Installation & maintenance</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -397,14 +408,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-store text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Stand d'Exposition</h3>
+                    <h3 data-i18n="service_stand" class="text-xl font-bold mb-3 text-white">Stand d'Exposition</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Aménagement de stands sur mesure pour vos salons et événements professionnels.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stands modulaires</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mobilier d'exposition</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Branding d'espace salon</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -415,14 +426,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-gift text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Supports personnalisés</h3>
+                    <h3 data-i18n="service_goodies" class="text-xl font-bold mb-3 text-white">Supports personnalisés</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Mugs, goodies et objets publicitaires sur mesure pour votre marque.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Objets publicitaires</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Mugs & gourdes personnalisés</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Goodies d'entreprise</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -433,14 +444,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-bullhorn text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Espaces publicitaires</h3>
+                    <h3 data-i18n="service_espaces" class="text-xl font-bold mb-3 text-white">Espaces publicitaires</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Location et gestion stratégique d'espaces d'affichage pour maximiser votre portée.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Affichage urbain</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Panneaux publicitaires</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stratégie d'emplacement</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -451,14 +462,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-video text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Vidéos & Motion Design</h3>
+                    <h3 data-i18n="service_video" class="text-xl font-bold mb-3 text-white">Vidéos & Motion Design</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Création de contenus vidéos promotionnels et animations graphiques percutantes.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vidéos promotionnelles</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Motion design & animation</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Montage & post-production</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -469,14 +480,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-print text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Print Premium</h3>
+                    <h3 data-i18n="service_print" class="text-xl font-bold mb-3 text-white">Print Premium</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Articles de fin d'année et supports d'impression haut de gamme.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Calendriers & agendas</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Impression finition luxe</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Articles de fin d'année</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -487,14 +498,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-paint-roller text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Habillage Publicitaire</h3>
+                    <h3 data-i18n="service_habillage" class="text-xl font-bold mb-3 text-white">Habillage Publicitaire</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Marquage professionnel de véhicules et vitrines pour une communication mobile.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Marquage véhicules</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Vitrophanie & adhésifs</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Flocage & covering</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -505,14 +516,14 @@
                     <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
                         <i class="fas fa-flag text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Supports flexibles</h3>
+                    <h3 data-i18n="service_flexibles" class="text-xl font-bold mb-3 text-white">Supports flexibles</h3>
                     <p class="text-white/40 text-xs mb-3 font-body leading-relaxed">Roll-up, X-banner et drapeaux pour une signalétique efficace et transportable.</p>
                     <ul class="space-y-1.5 text-white/50 mb-5 text-sm">
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Roll-up & X-banner</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Drapeaux & oriflammes</li>
                         <li class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold mr-2.5 flex-shrink-0"></span>Stand portable</li>
                     </ul>
-                    <button class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    <button data-i18n="savoir_plus" class="text-brand-gold font-semibold text-sm flex items-center group-hover:translate-x-2 transition-transform">
                         En savoir plus <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
                     </button>
                 </div>
@@ -526,14 +537,14 @@
     <section id="marques-2" class="py-20 bg-brand-black relative overflow-hidden border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal">
-                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
+                <span data-i18n="marques_title" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Ils nous font confiance</span>
             </div>
         </div>
         <div class="logoloop logoloop--fade" id="brand-loop-2" style="--logoloop-gap: 60px; --logoloop-logoHeight: 36px;">
             <div class="logoloop__track"></div>
         </div>
         <div class="text-center mt-12 reveal">
-            <h1 class="text-white/30 text-sm font-body">Rejoignez les entreprises qui nous font confiance</h1>
+            <h1 data-i18n="marques_sub" class="text-white/30 text-sm font-body">Rejoignez les entreprises qui nous font confiance</h1>
         </div>
     </section>
   
@@ -543,24 +554,24 @@
     <section id="realisations" class="py-24 bg-brand-gray relative hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal">
-                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Portfolio</span>
+                <span data-i18n="portfolio_badge" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Portfolio</span>
                 <h2 class="text-4xl md:text-5xl font-bold mt-4 text-brand-black">
-                    Nos <span class="text-gradient-gold">Réalisations</span>
+                    <span data-i18n="portfolio_title1">Nos</span> <span data-i18n="portfolio_title_highlight" class="text-gradient-gold">Réalisations</span>
                 </h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg mt-4">
+                <p data-i18n="portfolio_desc" class="text-gray-600 max-w-2xl mx-auto text-lg mt-4">
                     Découvrez nos projets les plus récents et laissez-vous inspirer
                 </p>
             </div>
             
             <!-- Filters -->
             <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
-                <button class="filter-btn active px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="all">Tous</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="signaletique">Signalétique</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="vehicules">Véhicules</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="edition">Edition</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="evenementiel">Événementiel</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="digital">Digital</button>
-                <button class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="objets">Objets</button>
+                <button data-i18n="filter_all" class="filter-btn active px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="all">Tous</button>
+                <button data-i18n="filter_signaletique" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="signaletique">Signalétique</button>
+                <button data-i18n="filter_vehicules" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="vehicules">Véhicules</button>
+                <button data-i18n="filter_edition" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="edition">Edition</button>
+                <button data-i18n="filter_evenementiel" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="evenementiel">Événementiel</button>
+                <button data-i18n="filter_digital" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="digital">Digital</button>
+                <button data-i18n="filter_objets" class="filter-btn px-5 py-2 rounded-full border border-brand-black/20 text-sm font-semibold transition-all duration-300 hover:bg-brand-gold hover:border-brand-gold" data-filter="objets">Objets</button>
             </div>
             
             <!-- ChromaGrid — Spotlight Grid -->
@@ -608,7 +619,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                 <div class="flex flex-col justify-center">
-                    <span class="text-xs md:text-sm font-bold tracking-[2px] uppercase" style="color:#000;">Pourquoi nous ?</span>
+                    <span data-i18n="pourquoi_title" class="text-xs md:text-sm font-bold tracking-[2px] uppercase" style="color:#000;">Pourquoi nous ?</span>
                     <div class="mt-3 md:mt-5">
                         <div class="text-2xl md:text-3xl lg:text-4xl font-black leading-tight" style="color:#000;">L'EXCELLENCE</div>
                         <div class="text-2xl md:text-3xl lg:text-4xl font-black leading-tight" style="color:#000;">AU SERVICE DE</div>
@@ -706,9 +717,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="reveal-left">
-                    <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">À Propos</span>
-                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
-                        Together, We Create <span class="text-brand-gold">✨</span>
+                    <span data-i18n="apropos_badge" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">À Propos</span>
+                    <h2 data-i18n="apropos_title1" class="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                        Together, We Create <span data-i18n="apropos_highlight" class="text-brand-gold">✨</span>
                     </h2>
                     <p class="text-white/50 text-lg mb-8 leading-relaxed">
                      Brandily by Eurl E Concept Interior est une marque créative spécialisée dans la communication visuelle, le design, le branding et les solutions publicitaires innovantes. Notre mission est d'accompagner les entreprises, les commerçants et les entrepreneurs dans la construction d'une image de marque forte, moderne et mémorable.
@@ -777,9 +788,9 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
     <section id="contact" class="py-24 bg-brand-black relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
-                <span class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Contact</span>
+                <span data-i18n="contact_badge" class="text-brand-gold text-sm font-semibold tracking-widest uppercase">Contact</span>
                 <h2 class="text-4xl md:text-5xl font-bold mt-4">
-                    Parlons de votre <span class="text-gradient-gold">projet</span>
+                    <span data-i18n="contact_title1">Parlons de votre</span> <span data-i18n="contact_highlight" class="text-gradient-gold">projet</span>
                 </h2>
                 <p class="text-white/50 max-w-2xl mx-auto text-lg mt-4">
                     Une idée ? Un projet ? Nous sommes là pour vous accompagner.
@@ -889,7 +900,7 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
                             <span class="text-[8px] md:text-[9px] font-inter text-white/50 tracking-[0.15em] uppercase">eurl e-concept interior</span>
                         </div>
                     </div>
-                    <p class="text-white/40 text-sm mb-6">Together, We Create ✨<br>Transformons vos idées en réalités visuelles mémorables.</p>
+                    <p data-i18n="footer_tagline" class="text-white/40 text-sm mb-6">Together, We Create ✨<br>Transformons vos idées en réalités visuelles mémorables.</p>
                     <svg width="0" height="0" style="position: absolute;">
                       <defs>
                         <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
@@ -1087,8 +1098,8 @@ Grâce à notre expertise en conception graphique, impression grand format, ense
             <p id="service-modal-desc" class="text-white/50 text-sm leading-relaxed mb-6"></p>
             <div id="service-modal-benefits" class="space-y-2 mb-8"></div>
             <div class="flex gap-3">
-                <button onclick="closeServiceModal(); openDevis(window.currentServiceForDevis)" class="flex-1 py-3 bg-brand-gold text-dark rounded-xl font-bold hover:bg-white transition-all duration-300 glow-gold">Demander un devis</button>
-                <a href="#contact" onclick="closeServiceModal()" class="flex-1 py-3 border border-white/20 text-white rounded-xl font-bold text-center hover:bg-white/20 hover:text-white transition-all duration-300">Nous contacter</a>
+                <button data-i18n="modal_devis" onclick="closeServiceModal(); openDevis(window.currentServiceForDevis)" class="flex-1 py-3 bg-brand-gold text-dark rounded-xl font-bold hover:bg-white transition-all duration-300 glow-gold">Demander un devis</button>
+                <a data-i18n="modal_contact" href="#contact" onclick="closeServiceModal()" class="flex-1 py-3 border border-white/20 text-white rounded-xl font-bold text-center hover:bg-white/20 hover:text-white transition-all duration-300">Nous contacter</a>
             </div>
         </div>
     </div>
