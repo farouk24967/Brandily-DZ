@@ -168,7 +168,7 @@ function initLogoLoop(containerId) {
     clients.forEach(c => {
       const li = document.createElement('li');
       li.className = 'logoloop__item';
-      li.innerHTML = '<div class="logoloop__logo" style="background:' + c.color + '20;border:2px solid ' + c.color + '40;border-radius:16px;padding:8px;display:flex;align-items:center;justify-content:center"><img src="public/images/' + c.name + '" alt="" class="logoloop__img"></div>';
+      li.innerHTML = '<img src="public/images/' + c.name + '" alt="" class="logoloop__img">';
       ul.appendChild(li);
     });
     return ul;
