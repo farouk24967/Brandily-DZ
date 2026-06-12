@@ -144,31 +144,44 @@ function initLogoLoop(containerId) {
   const track = document.querySelector('#' + containerId + ' .logoloop__track');
   if (!track) return;
   const clients = [
-    { name: 'logo%20business/amalfi.png', color: '#F5B301' },
-    { name: 'logo%20business/ChickenTime_logo_png-02.png', color: '#FF6B6B' },
-    { name: 'logo%20business/ChickenTime_logo_png-07.png', color: '#6C5CE7' },
-    { name: 'logo%20business/ChickenTime_logo_png-08.png', color: '#00C9A7' },
-    { name: 'logo%20business/ChickenTime_logo_png-09%20-%20Copy.png', color: '#FF6B35' },
-    { name: 'logo%20business/LOGO_ASSA.png', color: '#F5B301' },
-    { name: 'logo%20business/qaada.png', color: '#FF6B6B' },
-    { name: 'logo%20business/sheraton.png', color: '#6C5CE7' },
-    { name: 'logo%20business/shot.png', color: '#00C9A7' },
-    { name: 'logo%20business/unilever.png', color: '#FF6B35' },
-    { name: 'logo%20business/WhatsApp%20Image.png', color: '#F5B301' },
-    { name: 'logo%20business/Untitled%20design.png', color: '#FF6B6B' },
-    { name: 'logo%20business/client1.png', color: '#00C9A7' },
-    { name: 'logo%20business/client2.png', color: '#FF6B35' },
-    { name: 'logo%20business/client3.png', color: '#F5B301' },
-    { name: 'logo%20business/client4.png', color: '#FF6B6B' },
-    { name: 'logo%20business/client5.png', color: '#6C5CE7' }
+    'logo%20business/amalfi.png',
+    'logo%20business/bayat.png',
+    'logo%20business/ChickenTime_logo_png-07.png',
+    'logo%20business/client1.png',
+    'logo%20business/client2.png',
+    'logo%20business/client3.png',
+    'logo%20business/client4.png',
+    'logo%20business/client5.png',
+    'logo%20business/LOGO_ASSA.png',
+    'logo%20business/open.png',
+    'logo%20business/qaada.png',
+    'logo%20business/sheraton.png',
+    'logo%20business/shot.png',
+    'logo%20business/unilever.png',
+    'logo%20business/venus.png',
+    'logo%20business/viola.png',
+    'logo%20business/WhatsApp%20Image.png',
+    'logo%20business/Untitled%20design.png',
+    'logo%20business/bg%20%20remover/ChickenTime_logo_png-02.png',
+    'logo%20business/bg%20%20remover/Untitled%20design.png',
+    'logo%20business/bg%20%20remover/Untitled%20design2.png',
+    'logo%20business/bg%20%20remover/Untitled%20design3.png',
+    'logo%20business/bg%20%20remover/Untitled%20design4.png',
+    'logo%20business/bg%20%20remover/Untitled%20design5.png',
+    'logo%20business/bg%20%20remover/Untitled%20design6.png',
+    'logo%20business/bg%20%20remover/Untitled%20design7.png',
+    'logo%20business/bg%20%20remover/Untitled%20design9.png',
+    'logo%20business/bg%20%20remover/Untitled%20design10.png',
+    'logo%20business/bg%20%20remover/Untitled%20design11.png',
+    'logo%20business/bg%20%20remover/Untitled%20design12.png'
   ];
   function createList() {
     const ul = document.createElement('ul');
     ul.className = 'logoloop__list';
-    clients.forEach(c => {
+    clients.forEach(name => {
       const li = document.createElement('li');
       li.className = 'logoloop__item';
-      li.innerHTML = '<img src="public/images/' + c.name + '" alt="" class="logoloop__img">';
+      li.innerHTML = '<div class="logoloop__logo"><img src="public/images/' + name + '" alt="" class="logoloop__img"></div>';
       ul.appendChild(li);
     });
     return ul;
