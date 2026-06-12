@@ -161,19 +161,7 @@ function initLogoLoop(containerId) {
     'logo%20business/venus.png',
     'logo%20business/viola.png',
     'logo%20business/WhatsApp%20Image.png',
-    'logo%20business/Untitled%20design.png',
-    'logo%20business/bg%20%20remover/ChickenTime_logo_png-02.png',
-    'logo%20business/bg%20%20remover/Untitled%20design.png',
-    'logo%20business/bg%20%20remover/Untitled%20design2.png',
-    'logo%20business/bg%20%20remover/Untitled%20design3.png',
-    'logo%20business/bg%20%20remover/Untitled%20design4.png',
-    'logo%20business/bg%20%20remover/Untitled%20design5.png',
-    'logo%20business/bg%20%20remover/Untitled%20design6.png',
-    'logo%20business/bg%20%20remover/Untitled%20design7.png',
-    'logo%20business/bg%20%20remover/Untitled%20design9.png',
-    'logo%20business/bg%20%20remover/Untitled%20design10.png',
-    'logo%20business/bg%20%20remover/Untitled%20design11.png',
-    'logo%20business/bg%20%20remover/Untitled%20design12.png'
+    'logo%20business/Untitled%20design.png'
   ];
   function createList() {
     const ul = document.createElement('ul');
@@ -203,6 +191,22 @@ function initLogoLoop(containerId) {
   }
   track.addEventListener('mouseenter', () => velocity = 0);
   track.addEventListener('mouseleave', () => velocity = 60);
+  track.addEventListener('click', (e) => {
+    const item = e.target.closest('.logoloop__item');
+    if (!item) return;
+    const state = item.dataset.clickState || '0';
+    if (state === '0') {
+      item.dataset.clickState = '1';
+      item.classList.add('clicked');
+    } else if (state === '1') {
+      item.dataset.clickState = '2';
+      item.classList.remove('clicked');
+      item.classList.add('clicked-light');
+    } else {
+      item.dataset.clickState = '0';
+      item.classList.remove('clicked-light');
+    }
+  });
   requestAnimationFrame(animate);
 }
 initLogoLoop('brand-loop');
