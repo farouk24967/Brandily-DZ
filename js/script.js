@@ -166,6 +166,7 @@ function initLogoLoop(containerId) {
       const li = document.createElement('li');
       li.className = 'logoloop__item';
       if (name.includes('LOGO_ASSA') || name.includes('qaada') || name.includes('sheraton')) li.classList.add('needs-white');
+      if (name.includes('venus') || name.includes('amalfi')) li.classList.add('white-bg');
       li.innerHTML = '<div class="logoloop__logo"><img src="public/images/' + name + '" alt="" class="logoloop__img"></div>';
       ul.appendChild(li);
     });

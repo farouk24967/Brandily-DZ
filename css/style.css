@@ -603,6 +603,10 @@ body {
         .logoloop__item.needs-white .logoloop__img { filter: brightness(0) invert(1); }
         .logoloop__item.needs-white.clicked .logoloop__img { filter: none; }
         .logoloop__item.needs-white.clicked-light .logoloop__img { filter: none; }
+        .logoloop__item.white-bg .logoloop__logo { background: #fff; }
+        .logoloop__item.white-bg:hover .logoloop__logo { background: #fff; }
+        .logoloop__item.white-bg.clicked .logoloop__logo { background: #fff; }
+        .logoloop__item.white-bg.clicked-light .logoloop__logo { background: #fff; }
         .logoloop__link {
           display: inline-flex;
           align-items: center;
