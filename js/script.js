@@ -147,11 +147,7 @@ function initLogoLoop(containerId) {
     'logo%20business/amalfi.png',
     'logo%20business/bayat.png',
     'logo%20business/ChickenTime_logo_png-07.png',
-    'logo%20business/client1.png',
-    'logo%20business/client2.png',
-    'logo%20business/client3.png',
-    'logo%20business/client4.png',
-    'logo%20business/client5.png',
+
     'logo%20business/LOGO_ASSA.png',
     'logo%20business/open.png',
     'logo%20business/qaada.png',
