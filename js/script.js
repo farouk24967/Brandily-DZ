@@ -152,7 +152,6 @@ function initLogoLoop(containerId) {
     'logo%20business/open.png',
     'logo%20business/qaada.png',
     'logo%20business/sheraton.png',
-    'logo%20business/shot.png',
     'logo%20business/unilever.png',
     'logo%20business/venus.png',
     'logo%20business/viola.png',
