@@ -607,6 +607,14 @@ body {
         .logoloop__item.white-bg:hover .logoloop__logo { background: #fff; }
         .logoloop__item.white-bg.clicked .logoloop__logo { background: #fff; }
         .logoloop__item.white-bg.clicked-light .logoloop__logo { background: #fff; }
+        .logoloop__item.qaada-logo .logoloop__logo { background: #f0f0f0; }
+        .logoloop__item.qaada-logo:hover .logoloop__logo { background: #e8e8e8; }
+        .logoloop__item.qaada-logo.clicked .logoloop__logo { background: transparent; }
+        .logoloop__item.qaada-logo.clicked-light .logoloop__logo { background: #f0f0f0; }
+        .logoloop__item.open-logo .logoloop__logo { background: #f0f0f0; }
+        .logoloop__item.open-logo:hover .logoloop__logo { background: #e8e8e8; }
+        .logoloop__item.open-logo.clicked .logoloop__logo { background: transparent; }
+        .logoloop__item.open-logo.clicked-light .logoloop__logo { background: #f0f0f0; }
         .logoloop__link {
           display: inline-flex;
           align-items: center;
